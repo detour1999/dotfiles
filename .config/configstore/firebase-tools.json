@@ -1,0 +1,50 @@
+{
+	"motd": {
+		"cloudBuildErrorAfter": 1594252800000,
+		"cloudBuildWarnAfter": 1590019200000,
+		"defaultNode10After": 1594252800000,
+		"minVersion": "3.0.5",
+		"node8DeploysDisabledAfter": 1613390400000,
+		"node8RuntimeDisabledAfter": 1615809600000,
+		"node8WarnAfter": 1600128000000,
+		"fetched": 1708976335016
+	},
+	"usage": true,
+	"analytics-uuid": "7fe68c22-b35f-45d6-a416-c8058ad3607d",
+	"user": {
+		"iss": "accounts.google.com",
+		"azp": "563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com",
+		"aud": "563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com",
+		"sub": "106130527823665305039",
+		"email": "detour1999@gmail.com",
+		"email_verified": true,
+		"at_hash": "wzc2XDxFBZW4PmR14k50JQ",
+		"iat": 1707678656,
+		"exp": 1707682256
+	},
+	"tokens": {
+		"expires_at": 1708980358004,
+		"refresh_token": "1//05W2D2Zqd5PyYCgYIARAAGAUSNwF-L9Ire_zee6xChMN6sTjEzzqbvgq5HBThn81twAeviLQqHrH5Buf-36OVJDmrRGA96knuSEo",
+		"scopes": [],
+		"access_token": "ya29.a0AfB_byAtov3omFOnxBrGttnQN6Dp-v-tPmWWSN0CRXY9mqtH3ZG7jS8ulis8yGBfvGq14mGpp3ZgvT28jLMklcxqhsEiwMK9OtFlixesNE7MAmq905FkLQxGDKAnQS2pbKTJErUvJyFCVP-O3x1xr7d04DvRoBhu9o_2RGTOgrkaCgYKAWASARISFQHGX2MiD0Oi7SJR0qhd5QgT1luQhA0178",
+		"expires_in": 3599,
+		"scope": "https://www.googleapis.com/auth/firebase https://www.googleapis.com/auth/userinfo.email openid https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly",
+		"token_type": "Bearer",
+		"id_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjZmOTc3N2E2ODU5MDc3OThlZjc5NDA2MmMwMGI2NWQ2NmMyNDBiMWIiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiNTYzNTg0MzM1ODY5LWZncmhnbWQ0N2JxbmVraWo1aThiNXByMDNobzg0OWU2LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiNTYzNTg0MzM1ODY5LWZncmhnbWQ0N2JxbmVraWo1aThiNXByMDNobzg0OWU2LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTA2MTMwNTI3ODIzNjY1MzA1MDM5IiwiZW1haWwiOiJkZXRvdXIxOTk5QGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhdF9oYXNoIjoiSk8xNjU0TXVrNG9jS2JoYjlQemo2QSIsImlhdCI6MTcwODk3Njc1OCwiZXhwIjoxNzA4OTgwMzU4fQ.JCAqcNTMrG6ipnf-mYPpEtww_Z9XHZ8JJ0191Fy4i1hNujYcAbjj15JwEFhBap2ncYf7-Z_XZs1Rt9XfvBhSFwrvNfzNyjZ4uK5vH2UNCyHKZvkdhEM_8GuTK_iBd5EtgpAoAc1QmJcGGhtcP1nLUncCtM5rgqvI15ot7DkFsmsV1cCTVLMbxn5Zklu40wyqU-vxn-JeE8Jv2condoQQwsIJXfbxkuWB8kayYL1UYg4Z4hbeE5aW9MoVN4WmD3063iiWPYzXX6oWSb9JW_cAz3XMUj5ChZG7ZT2hxvdr9Njq3GMHmKhIVeaFCKRXB94OAVerLrEI3WvGpI8qu85uTg"
+	},
+	"activeProjects": {
+		"/Users/dylanr/Documents/src/readadd": "readlater-414018"
+	},
+	"previews": {
+		"internalframeworks": false,
+		"webframeworks": true
+	},
+	"emulator-analytics-clientId": "c2a1fc69-33f8-4ac2-b390-1e68236bd80e",
+	"adminsdkconfig": {
+		"readlater-414018": {
+			"projectId": "readlater-414018",
+			"storageBucket": "readlater-414018.appspot.com",
+			"locationId": "us-central"
+		}
+	}
+}

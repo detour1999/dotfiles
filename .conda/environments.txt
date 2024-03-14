@@ -1,0 +1,7 @@
+/opt/homebrew/Caskroom/miniconda/base
+/opt/homebrew/Caskroom/miniconda/base/envs/parents-stuff
+/opt/homebrew/Caskroom/miniconda/base/envs/parent-stuff-39
+/opt/homebrew/Caskroom/miniconda/base/envs/langchain-env
+/opt/homebrew/Caskroom/miniconda/base/envs/obs-search
+/opt/homebrew/Caskroom/miniconda/base/envs/meme-search
+/opt/homebrew/Caskroom/miniconda/base/envs/readadd

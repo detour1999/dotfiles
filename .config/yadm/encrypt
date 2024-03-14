@@ -1,0 +1,11 @@
+.ssh/id_rsa
+.ssh/*.key
+.ssh/*.pem
+.ssh/config
+authorized_keys
+.ssh/id_ed25519
+known_hosts
+.secrets/secrets.env
+.config/remmina/remmina.pref
+.gcloud/*.json
+.npmrc
