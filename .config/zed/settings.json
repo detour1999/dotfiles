@@ -9,10 +9,15 @@
 {
   "theme": {
     "mode": "system",
-    "light": "macOS Classic Light",
+    "light": "macOS Classic Dark",
     "dark": "macOS Classic Dark"
   },
   "assistant": {
+    "default_model": {
+      "provider": "openai",
+      "model": "gpt-4o"
+    },
+    "version": "2",
     "dock": "bottom"
   },
   "ui_font_size": 16,

@@ -6,9 +6,10 @@ Write a clear, informative pull request message in markdown:
 * Start with a summary
 * Explain the 'why' behind changes
 * Include a bulleted list to outline all of the changes
-* If there are changes that resolve specified issues add the issues to a list of closed issues
+* If there are changes that resolve specified issues add the issues to a list of closed issues ONLY if the issues are clearly called out in the commit messages
 * end with a "Joy" section that includes a haiku about the changes and three emoji that represent the changes.
 * If there are no changes, or the input is blank - then return a blank string
+* This message should NEVER be wrapped in ticks (``) or quotes ('') - the user expereince will feel broken if you do this.
 
 Think carefully before you write your pull request body.
 

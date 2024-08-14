@@ -3,8 +3,8 @@
 	br = branch
 	ci = commit
 	st = status
-	pr = !/Users/dylanr/Documents/src/personal/llm-pr/pr.sh
-	br-cleanup = !/Users/dylanr/Documents/src/personal/scripts/git-br-cleanup.sh
+	pr = !/Users/dylanr/Dropbox/work/personal/llm-pr/pr.sh
+	br-cleanup = !/Users/dylanr/Dropbox/work/personal/scripts/git-br-cleanup.sh
 [user]
 	email = detour1999@gmail.com
 	name = Dylan Richard
@@ -12,3 +12,5 @@
 	hooksPath = /Users/dylanr/.git_hooks
 [push]
 	autoSetupRemote = true
+[pull]
+	rebase = false

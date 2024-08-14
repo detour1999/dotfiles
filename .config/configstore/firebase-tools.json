@@ -7,7 +7,7 @@
 		"node8DeploysDisabledAfter": 1613390400000,
 		"node8RuntimeDisabledAfter": 1615809600000,
 		"node8WarnAfter": 1600128000000,
-		"fetched": 1708976335016
+		"fetched": 1723575356049
 	},
 	"usage": true,
 	"analytics-uuid": "7fe68c22-b35f-45d6-a416-c8058ad3607d",
@@ -23,17 +23,19 @@
 		"exp": 1707682256
 	},
 	"tokens": {
-		"expires_at": 1708980358004,
+		"expires_at": 1723578956201,
 		"refresh_token": "1//05W2D2Zqd5PyYCgYIARAAGAUSNwF-L9Ire_zee6xChMN6sTjEzzqbvgq5HBThn81twAeviLQqHrH5Buf-36OVJDmrRGA96knuSEo",
 		"scopes": [],
-		"access_token": "ya29.a0AfB_byAtov3omFOnxBrGttnQN6Dp-v-tPmWWSN0CRXY9mqtH3ZG7jS8ulis8yGBfvGq14mGpp3ZgvT28jLMklcxqhsEiwMK9OtFlixesNE7MAmq905FkLQxGDKAnQS2pbKTJErUvJyFCVP-O3x1xr7d04DvRoBhu9o_2RGTOgrkaCgYKAWASARISFQHGX2MiD0Oi7SJR0qhd5QgT1luQhA0178",
+		"access_token": "ya29.a0AcM612wqeMPMiagR6bs-_mqsDIdrcH8CzWrL20xK6Dcz7GgTFUTu4Q-7j-6I6Dr4x1YI4uB-t1TPyOIe_1-bvTGtiTlO_LxiI8dHFjT8cWVd_9b_0DLoujaS0RQTd53TMgTDmQli1uX7KloRUaEV2ZjFTKzQX9WkzkJp_copURlaaCgYKASUSARISFQHGX2MiLJxWpmNQiRn0K5tVJIHLoQ0179",
 		"expires_in": 3599,
-		"scope": "https://www.googleapis.com/auth/firebase https://www.googleapis.com/auth/userinfo.email openid https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly",
+		"scope": "https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/firebase openid",
 		"token_type": "Bearer",
-		"id_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjZmOTc3N2E2ODU5MDc3OThlZjc5NDA2MmMwMGI2NWQ2NmMyNDBiMWIiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiNTYzNTg0MzM1ODY5LWZncmhnbWQ0N2JxbmVraWo1aThiNXByMDNobzg0OWU2LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiNTYzNTg0MzM1ODY5LWZncmhnbWQ0N2JxbmVraWo1aThiNXByMDNobzg0OWU2LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTA2MTMwNTI3ODIzNjY1MzA1MDM5IiwiZW1haWwiOiJkZXRvdXIxOTk5QGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhdF9oYXNoIjoiSk8xNjU0TXVrNG9jS2JoYjlQemo2QSIsImlhdCI6MTcwODk3Njc1OCwiZXhwIjoxNzA4OTgwMzU4fQ.JCAqcNTMrG6ipnf-mYPpEtww_Z9XHZ8JJ0191Fy4i1hNujYcAbjj15JwEFhBap2ncYf7-Z_XZs1Rt9XfvBhSFwrvNfzNyjZ4uK5vH2UNCyHKZvkdhEM_8GuTK_iBd5EtgpAoAc1QmJcGGhtcP1nLUncCtM5rgqvI15ot7DkFsmsV1cCTVLMbxn5Zklu40wyqU-vxn-JeE8Jv2condoQQwsIJXfbxkuWB8kayYL1UYg4Z4hbeE5aW9MoVN4WmD3063iiWPYzXX6oWSb9JW_cAz3XMUj5ChZG7ZT2hxvdr9Njq3GMHmKhIVeaFCKRXB94OAVerLrEI3WvGpI8qu85uTg"
+		"id_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjQ1MjljNDA5Zjc3YTEwNmZiNjdlZTFhODVkMTY4ZmQyY2ZiN2MwYjciLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiNTYzNTg0MzM1ODY5LWZncmhnbWQ0N2JxbmVraWo1aThiNXByMDNobzg0OWU2LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiNTYzNTg0MzM1ODY5LWZncmhnbWQ0N2JxbmVraWo1aThiNXByMDNobzg0OWU2LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTA2MTMwNTI3ODIzNjY1MzA1MDM5IiwiZW1haWwiOiJkZXRvdXIxOTk5QGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhdF9oYXNoIjoiYUtaVWVUVFVSZzBzNldqZENLVUlGZyIsImlhdCI6MTcyMzU3NTM1NywiZXhwIjoxNzIzNTc4OTU3fQ.TYcHkFfsB5sTGogIcLnc_RKmSM6wc1ktBQoH3n96Cy-i7qSGClvS-3l3ltg8PCdjSbOA0Y0R6KjMzXUc9aE21n724F6ymKKQGfS2l3K54DySfefL2RCGtHDvPWlpLR9E6yc-0m8jjl1A7INjITuOfowUgLq9M2AaRKgMO74hGtZ9X2KE9fPdpz0G8F1gYAGQgZfLHMFLttMFFgOzM6UwLKZBYtxhlqGGswnSlwargmuA9vOw9McpnkO2rEmZRwfBHKuQQCgjwq8fxNzV9MuBNUDNSc5PNEW7GjlcQ4IEIUNcrzhM3soscvLt-_GnfFbRsyxsthFTkSNoZNxFsftDdw"
 	},
 	"activeProjects": {
-		"/Users/dylanr/Documents/src/readadd": "readlater-414018"
+		"/Users/dylanr/Documents/src/readadd": "readlater-414018",
+		"/Users/dylanr/Dropbox (Maestral)/work/personal/dylanr.com": "dylanr-97e54",
+		"/Users/dylanr/Documents/work/meme-rodeo": "meme-rodeo"
 	},
 	"previews": {
 		"internalframeworks": false,
@@ -45,6 +47,36 @@
 			"projectId": "readlater-414018",
 			"storageBucket": "readlater-414018.appspot.com",
 			"locationId": "us-central"
+		},
+		"dylanr-97e54": {
+			"projectId": "dylanr-97e54",
+			"storageBucket": "dylanr-97e54.appspot.com",
+			"locationId": "us-central"
+		},
+		"meme-rodeo": {
+			"projectId": "meme-rodeo",
+			"storageBucket": "meme-rodeo.appspot.com",
+			"locationId": "us-central"
+		}
+	},
+	"webconfig": {
+		"dylanr-97e54": {
+			"projectId": "dylanr-97e54",
+			"storageBucket": "dylanr-97e54.appspot.com",
+			"locationId": "us-central",
+			"apiKey": "AIzaSyBCUHd_24Sxuw-8suG2MswjTiwJhKYRGTs",
+			"authDomain": "dylanr-97e54.firebaseapp.com",
+			"messagingSenderId": "605813699602"
+		},
+		"meme-rodeo": {
+			"projectId": "meme-rodeo",
+			"appId": "1:663937683751:web:80d415f5a341b766209902",
+			"storageBucket": "meme-rodeo.appspot.com",
+			"locationId": "us-central",
+			"apiKey": "AIzaSyATRgNsLX-dpg0Wn5gc1rQe5hy0HGTw71k",
+			"authDomain": "meme-rodeo.firebaseapp.com",
+			"messagingSenderId": "663937683751",
+			"measurementId": "G-XF08R5EDES"
 		}
 	}
 }

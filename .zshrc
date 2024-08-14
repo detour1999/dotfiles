@@ -12,8 +12,8 @@ export ZSH="$HOME/.oh-my-zsh"
 # ZSH_THEME="wedisagree"
 # ZSH_THEME="bureau"
 # ZSH_THEME="clean"
-ZSH_THEME="fletcherm"
-# ZSH_THEME="fwalch"
+# ZSH_THEME="fletcherm"
+ZSH_THEME="detour2"
 # ZSH_THEME="garyblessington"
 
 # Set list of themes to pick from when loading at random
@@ -71,6 +71,8 @@ HYPHEN_INSENSITIVE="true"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
@@ -78,8 +80,6 @@ HYPHEN_INSENSITIVE="true"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
     git
-    zsh-autosuggestions
-    zsh-syntax-highlighting
     zsh-interactive-cd
 )
 
@@ -111,6 +111,9 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -130,9 +133,13 @@ unset __conda_setup
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # $HOME/Documents/dotfiles/synccomp.sh
 eval "$(atuin init zsh)"
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 #export PATH="/Users/dylanr/Documents/src/personal/llm-pr:$PATH"
 #export PATH="/Users/dylanr/Documents/src/personal/scripts:$PATH"
-export JAVA_HOME="/opt/homebrew/opt/openjdk/bin/java"
+export JAVA_HOME="/opt/homebrew/opt/openjdk"
 export GPG_TTY=$(tty)
+. /opt/homebrew/opt/asdf/libexec/asdf.sh
+eval "$(mise activate zsh)"
