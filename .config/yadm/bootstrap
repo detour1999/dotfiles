@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Check if the operating system is macOS
+if [[ "$(uname)" == "Darwin" ]]; then
+  echo "Running on macOS..."
+
+  # Check if Homebrew is installed, and install it if not
+  if ! command -v brew &> /dev/null; then
+    echo "Homebrew not found, installing..."
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  fi
+
+  # Install packages from Brewfile if it exists
+  if [ -f "$HOME/.config/brew/Brewfile" ]; then
+    echo "Installing Brewfile packages..."
+    brew bundle --file="$HOME/.config/brew/Brewfile"
+  else
+    echo "Brewfile not found!"
+  fi
+
+  # Set up a cron job to update the Brewfile weekly
+  # First, we check if the cron job already exists to avoid duplicate entries
+  crontab -l | grep -q 'brew bundle dump' || {
+    echo "Setting up weekly Brewfile update cron job..."
+    (crontab -l ; echo "0 0 * * 0 $HOME/.config/yadm/update_brewfile.sh") | crontab -
+  }
+else
+  echo "Not running on macOS. Skipping Homebrew installation."
+fi
