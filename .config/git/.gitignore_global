@@ -1,0 +1,34 @@
+# macOS files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Editor-specific files
+*.swp
+*.swo
+.vscode/
+.code-workspace
+.zed/
+*~
+\#*\#
+
+# Dependency and build artifacts
+node_modules/
+__pycache__/
+.bundle/
+vendor/bundle/
+target/
+*.class
+
+# Logs and temp files
+*.log
+*.tmp
+*.bak
+
+# IDE and project settings
+.idea/
+.classpath
+.project
+.settings/
+xcuserdata/
+DerivedData/
