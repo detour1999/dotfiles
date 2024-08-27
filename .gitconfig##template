@@ -1,8 +1,8 @@
 [alias]
-	co = checkout
-	br = branch
-	ci = commit
-	st = status
+    co = checkout
+    br = branch
+    ci = commit
+    st = status
     lg = log --oneline --graph --decorate --all
     last = log -1 HEAD
     amend = commit --amend --no-edit
@@ -13,23 +13,23 @@
     prune-remote = fetch --prune origin
     hist = log --pretty=format:"%h %ad | %s%d [%an]" --graph --date=short
     rebase-i = rebase -i origin/master
-	pr = !{{ env.HOME }}/Dropbox/work/personal/llm-pr/pr.sh
-	br-cleanup = !{{ env.HOME }}/Dropbox/work/personal/scripts/git-br-cleanup.sh
+    pr = !{{ env.HOME }}/Dropbox/work/personal/llm-pr/pr.sh
+    br-cleanup = !{{ env.HOME }}/Dropbox/work/personal/scripts/git-br-cleanup.sh
 [user]
-	email = detour1999@gmail.com
-	name = Dylan Richard
+    email = detour1999@gmail.com
+    name = Dylan Richard
 [core]
-	hooksPath = {{ env.HOME }}/.git_hooks
-	# editor = {{ env.HOME }}/.config/git/select_editor.sh
-	editor = nano
+    hooksPath = {{ env.HOME }}/.git_hooks
+    editor = {{ env.HOME }}/.config/git/select_editor.sh
+    # editor = nano
     whitespace = fix,-indent-with-non-tab,trailing-space
     excludesfile = {{ env.HOME }}/.config/git/.gitignore_global
 [sequence]
-	editor = {{ env.HOME }}/.config/git/select_editor.sh
+    editor = {{ env.HOME }}/.config/git/select_editor.sh
 [push]
-	autoSetupRemote = true
+    autoSetupRemote = true
 [pull]
-	rebase = false
+    rebase = false
 [help]
     autocorrect = 1
 
