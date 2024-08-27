@@ -13,19 +13,19 @@
     prune-remote = fetch --prune origin
     hist = log --pretty=format:"%h %ad | %s%d [%an]" --graph --date=short
     rebase-i = rebase -i origin/master
-	pr = !{{ .Home }}/Dropbox/work/personal/llm-pr/pr.sh
-	br-cleanup = !{{ .Home }}/Dropbox/work/personal/scripts/git-br-cleanup.sh
+	pr = !{{ yadm.home }}/Dropbox/work/personal/llm-pr/pr.sh
+	br-cleanup = !{{ yadm.home }}/Dropbox/work/personal/scripts/git-br-cleanup.sh
 [user]
 	email = detour1999@gmail.com
 	name = Dylan Richard
 [core]
-	hooksPath = {{ .Home }}/.git_hooks
-	# editor = {{ .Home }}/.config/git/select_editor.sh
+	hooksPath = {{ yadm.home }}/.git_hooks
+	# editor = {{ yadm.home }}/.config/git/select_editor.sh
 	editor = nano
     whitespace = fix,-indent-with-non-tab,trailing-space
-    excludesfile = {{ .Home }}/.config/git/.gitignore_global
+    excludesfile = {{ yadm.home }}/.config/git/.gitignore_global
 [sequence]
-	editor = {{ .Home }}/.config/git/select_editor.sh
+	editor = {{ yadm.home }}/.config/git/select_editor.sh
 [push]
 	autoSetupRemote = true
 [pull]
