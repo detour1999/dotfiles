@@ -20,8 +20,8 @@
 	name = Dylan Richard
 [core]
 	hooksPath = /Users/dylanr/.git_hooks
-	editor = $HOME/.config/git/select_editor.sh
-	# editor = vim
+	# editor = $HOME/.config/git/select_editor.sh
+	editor = nano
     whitespace = fix,-indent-with-non-tab,trailing-space
     excludesfile = $HOME/.config/git/.gitignore_global
 [sequence]
