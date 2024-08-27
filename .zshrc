@@ -4,6 +4,7 @@
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
+
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -13,8 +14,12 @@ export ZSH="$HOME/.oh-my-zsh"
 # ZSH_THEME="bureau"
 # ZSH_THEME="clean"
 # ZSH_THEME="fletcherm"
-ZSH_THEME="detour2"
+# ZSH_THEME="detour2"
 # ZSH_THEME="garyblessington"
+
+ZSH_CUSTOM="$HOME/.config/oh-my-zsh"
+ZSH_THEME="detour2"
+fpath+=($ZSH_CUSTOM_THEMES_DIR)
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
