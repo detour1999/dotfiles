@@ -2,3 +2,7 @@
 /opt/homebrew/Caskroom/miniconda/base/envs/codestral-mamba
 /opt/homebrew/Caskroom/miniconda/base/envs/vision-buy
 /opt/homebrew/Caskroom/miniconda/base/envs/meme-rodeo
+/opt/homebrew/Caskroom/miniconda/base/envs/claude-engineer
+/opt/homebrew/Caskroom/miniconda/base/envs/weather_tracker
+/opt/homebrew/Caskroom/miniconda/base/envs/spotify-lidarr
+/opt/homebrew/Caskroom/miniconda/base/envs/ps5

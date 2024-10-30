@@ -145,6 +145,9 @@ export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 #export PATH="/Users/dylanr/Documents/src/personal/llm-pr:$PATH"
 #export PATH="/Users/dylanr/Documents/src/personal/scripts:$PATH"
 export JAVA_HOME="/opt/homebrew/opt/openjdk"
+
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+
 export GPG_TTY=$(tty)
 . /opt/homebrew/opt/asdf/libexec/asdf.sh
 eval "$(mise activate zsh)"
