@@ -7,7 +7,7 @@
 		"node8DeploysDisabledAfter": 1613390400000,
 		"node8RuntimeDisabledAfter": 1615809600000,
 		"node8WarnAfter": 1600128000000,
-		"fetched": 1724076090872
+		"fetched": 1728320339374
 	},
 	"usage": true,
 	"analytics-uuid": "7fe68c22-b35f-45d6-a416-c8058ad3607d",
@@ -23,14 +23,14 @@
 		"exp": 1707682256
 	},
 	"tokens": {
-		"expires_at": 1724084900731,
+		"expires_at": 1728339458244,
 		"refresh_token": "1//05W2D2Zqd5PyYCgYIARAAGAUSNwF-L9Ire_zee6xChMN6sTjEzzqbvgq5HBThn81twAeviLQqHrH5Buf-36OVJDmrRGA96knuSEo",
 		"scopes": [],
-		"access_token": "ya29.a0AcM612yJzj-T2-TTmHXgbhou7vZNWaVMdM60ojo3GH3agR60LyW1Si3NLfpm_-OvoPhweOdq-fLcQfL0GcHEVIXxiNg4G2AbPZh3huNSEX9ykHo4EM1JMJtEF0GMXL5oeR9PQ2fdDN6nrrZB732sSC_Ped-urT463Koz1Q30-Wmjigp8aCgYKAfcSARISFQHGX2MirSGrS0bBUCLEybpTxuuozw0183",
+		"access_token": "ya29.a0AcM612zfeGAui86pQO8rZ-9g6Ot4Nxes6CtP1J8erNCStgsZiNQMNu75hSH8R0zp06DE2uzv5Sjmjkf-EyPij-2hTfirJqQBgF3DSRqg-LgtN7mCqMffArTvVIUDGV3wgsrLGPOGhTAWKRtkB_fo50LoZJ9COHaY93kG0VmpmfXDYYKfaCgYKAe8SARISFQHGX2MigaApFl82X8khJumd0ojJmA0183",
 		"expires_in": 3599,
-		"scope": "https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/userinfo.email openid",
+		"scope": "https://www.googleapis.com/auth/firebase https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/userinfo.email openid https://www.googleapis.com/auth/cloud-platform",
 		"token_type": "Bearer",
-		"id_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImQyZDQ0NGNmOGM1ZTNhZTgzODZkNjZhMTNhMzE2OTc2YWEzNjk5OTEiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiNTYzNTg0MzM1ODY5LWZncmhnbWQ0N2JxbmVraWo1aThiNXByMDNobzg0OWU2LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiNTYzNTg0MzM1ODY5LWZncmhnbWQ0N2JxbmVraWo1aThiNXByMDNobzg0OWU2LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTA2MTMwNTI3ODIzNjY1MzA1MDM5IiwiZW1haWwiOiJkZXRvdXIxOTk5QGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhdF9oYXNoIjoiX054QkNWWDBZNTZnQVhyaWFTbWl1QSIsImlhdCI6MTcyNDA4MTMwMSwiZXhwIjoxNzI0MDg0OTAxfQ.a-5Pyht75B9PXiFJxGF2TpjFQYIUED0rG-PyzyzJdT1x6OW5kieOh3DmmWiee5lgSZPny-5X_KBk06ft3YZ6e5Ssp-fqk7E91v0QWPfvAN6zkCNH3Z8dAnG0LiSzmtIx26W81yfU8fvAl1hn44eRJIHzXR9kOQYZJoy06qyIuj7b84xklcnBccvtdEK2gQahoXNH7_4KPmhE-3j8KDySyTF29zLeuYe3A_q1tFGGmbXzBLMxDF-JkO8tnjSBm1FIcT722s4SyBv5Sk_J7moDCVTaaht9TvgpcE4h9JcMW5WHyKK8qr_UY9KSbXNTiE5estNTmWEWbb4SGMR6d1UxVA"
+		"id_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImE1MGY2ZTcwZWY0YjU0OGE1ZmQ5MTQyZWVjZDFmYjhmNTRkY2U5ZWUiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiNTYzNTg0MzM1ODY5LWZncmhnbWQ0N2JxbmVraWo1aThiNXByMDNobzg0OWU2LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiNTYzNTg0MzM1ODY5LWZncmhnbWQ0N2JxbmVraWo1aThiNXByMDNobzg0OWU2LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTA2MTMwNTI3ODIzNjY1MzA1MDM5IiwiZW1haWwiOiJkZXRvdXIxOTk5QGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhdF9oYXNoIjoiNlVfZkc1UFBNWkE2YzBFbF9VQmd2USIsImlhdCI6MTcyODMzNTg1OSwiZXhwIjoxNzI4MzM5NDU5fQ.q7XLFkgysdBeQJjP1swnneFdh36IKQ2G2UZ1SAgjUzCevzWsEWGcOStmS5a2eTrBnR_yH8MwrWBoZtn3v2xXeAEtxCz34kRcqmEztWP2PlTnhL216VzrT_-CAmkIv9-eYSKG-9yXKDkAx1pQeAqW0uJFybb2TS9iJPV2nQhQsz_sHBmHTSs3oSrBHBs5-0510pzIDIVUKN9-o0Hh2zCUDWu7I6YbtefCMNhFwcWEgbYer49WRJLvRIxMn-SaBHyBEVPAJoHt_WXLytAlUFBjrRLmtaaWd9cbi6J21S2UP9YqaXp3ld4Klvu-zNEgxu-De7unb7FJ5GmJc60p23QkHQ"
 	},
 	"activeProjects": {
 		"/Users/dylanr/Documents/src/readadd": "readlater-414018",

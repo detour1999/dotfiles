@@ -41,7 +41,7 @@ function ssh_hostname() {
 }
 
 # Modified PROMPT that includes both warnings
-PROMPT='$(unused_conda_warning)$(unused_venv_warning)$(conda_env_prompt_info)$(virtual_env_prompt_info)%{$fg_no_bold[cyan]%}%n%{$fg_no_bold[magenta]%}$(ssh_hostname)•%{$fg_no_bold[green]%}%3~$(git_prompt_info)%{$reset_color%}» '
+PROMPT='$(unused_venv_warning)$(conda_env_prompt_info)$(virtual_env_prompt_info)%{$fg_no_bold[cyan]%}%n%{$fg_no_bold[magenta]%}$(ssh_hostname)•%{$fg_no_bold[green]%}%3~$(git_prompt_info)%{$reset_color%}» '
 
 # Rest of your theme remains unchanged
 RPROMPT='[%*]'
