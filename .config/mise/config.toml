@@ -1,5 +1,112 @@
-[tools]
-node = "18"
-
 [settings]
 experimental = true
+
+[tools]
+usage = "latest"
+node = "latest"
+go = "latest"
+rust = "latest"
+deno = "latest"
+# bun = "latest"
+# ruby = "latest"
+# java = "latest"
+# kotlin = "latest"
+# zig = "latest"
+# elixir = "latest"
+# haskell = "latest"
+# scala = "latest"
+# terraform = "latest"
+# ansible = "latest"
+# pnpm = "latest"
+yarn = "latest"
+ruff = "latest"
+python = "3.12"
+
+[tasks."llm:generate_bundle"]
+description = 'Generate LLM bundle output file using repomix'
+hide = true # hide this task from the lis
+run = """
+#!/usr/bin/env bash
+npx repomix --style xml --output-show-line-numbers --output output.txt --ignore **/uv.lock,**/package-lock.json,**/.env,**/Cargo.lock,**/node_modules,**/target,**/dist,**/build,**/output.txt,**/yarn.lock
+"""
+
+[tasks."llm:clean_bundles"]
+description = 'Generate LLM bundle output file using repomix'
+
+run = """
+#!/usr/bin/env bash
+find . -name "output.txt" -print -delete
+"""
+
+[tasks."llm:generate_readme"]
+depends = ["llm:generate_bundle"]
+description = 'Generate README.md from repository content stored in output.txt using LLM generation'
+run = """
+#!/usr/bin/env bash
+cat output.txt | llm -t readme-gen > README.md
+"""
+
+[tasks."llm:copy_buffer_bundle"]
+depends = ["llm:generate_bundle"]
+description = 'Copy generated LLM bundle from output.txt to system clipboard for external use'
+run = """
+#!/usr/bin/env bash
+cat output.txt | pbcopy
+echo "Pushed output.txt to the copy buffer"
+"""
+
+[tasks."llm:generate_github_issues"]
+depends = ["llm:generate_bundle"]
+description = 'Generate GitHub issues from repository content stored in output.txt using LLM generation'
+run = """
+#!/usr/bin/env bash
+cat output.txt | llm -m claude-3.5-sonnet -t github-issue-gen > issues.md
+"""
+
+[tasks."llm:generate_code_review"]
+depends = ["llm:generate_bundle"]
+description = 'Generate code review output from repository content stored in output.txt using LLM generation'
+run = """
+#!/usr/bin/env bash
+cat output.txt | llm -m claude-3.5-sonnet -t code-review-gen > code-review.md
+"""
+
+[tasks."llm:generate_missing_tests"]
+depends = ["llm:generate_bundle"]
+description = 'Generate missing tests for code in repository content stored in output.txt using LLM generation'
+run = """
+#!/usr/bin/env bash
+cat output.txt | llm -m claude-3.5-sonnet -t missing-tests-gen > missing-tests.md
+"""
+
+[tasks."llm:generate_issue_prompts"]
+depends = ["llm:generate_bundle"]
+description = 'Generate issue prompts from repository content stored in output.txt using LLM generation'
+run = """
+#!/usr/bin/env bash
+cat output.txt | llm -m claude-3.5-sonnet -t issue-prompts-gen > issue-prompts.md
+"""
+
+[tasks."python:format"]
+description = 'Format Python code using ruff formatter'
+run = "uvx ruff format"
+
+[tasks."python:lint"]
+description = 'Lint Python code using ruff'
+run = "uvx ruff check"
+
+[tasks."python:lint-fix"]
+description = 'Automatically fix Python linting issues using ruff'
+run = "uvx ruff check --fix"
+
+[tasks."python:test"]
+description = 'Run Python tests using pytest'
+run = "uv run pytest"
+
+[tasks.jupyter]
+description = 'Start Jupyter Lab'
+run = "uv run --with jupyter jupyter lab"
+
+[tasks.webui]
+description = 'Start WebUI'
+run = "uvx --python 3.11 open-webui serve"
