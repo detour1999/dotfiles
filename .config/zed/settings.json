@@ -9,7 +9,7 @@
 {
   "languages": {
     "Plain Text": {
-      "show_inline_completions": false
+      "show_edit_predictions": false
     }
   },
   "theme": {
@@ -20,7 +20,7 @@
   "assistant": {
     "default_model": {
       "provider": "zed.dev",
-      "model": "claude-3-5-sonnet-latest"
+      "model": "claude-3-7-sonnet-latest"
     },
     "version": "2",
     "dock": "bottom"
@@ -28,5 +28,33 @@
   "ui_font_size": 16,
   "buffer_font_size": 16.0,
   "format_on_save": "on",
-  "soft_wrap": "editor_width"
+  "soft_wrap": "editor_width",
+  "terminal": {
+    "font_family": "Consolas", //"Consolas",
+    "font_size": 18,
+    "cell_width": 1.0,
+    "line_height": {
+      "custom": 1.25
+    },
+    // "toolbar": {
+    //   "breadcrumbs": true
+    // },
+    "opacity": 1.0, // Ghostty is solid by default
+    "padding": {
+      "x": 2,
+      "y": 2
+    },
+    "background": "#282a36", // Dracula background
+    "foreground": "#f8f8f2", // Dracula foreground
+    "colors": {
+      "black": "#21222c",
+      "red": "#ff5555",
+      "green": "#50fa7b",
+      "yellow": "#f1fa8c",
+      "blue": "#bd93f9",
+      "magenta": "#ff79c6",
+      "cyan": "#8be9fd",
+      "white": "#f8f8f2"
+    }
+  }
 }
