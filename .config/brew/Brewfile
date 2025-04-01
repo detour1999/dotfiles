@@ -10,8 +10,6 @@ brew "libpng"
 brew "autoconf"
 # GNU File, Shell, and Text utilities
 brew "coreutils"
-# Extendable version manager with support for Ruby, Node.js, Erlang & more
-brew "asdf"
 # Improved shell history for zsh, bash, fish and nushell
 brew "atuin"
 # Core application library for C
@@ -64,8 +62,6 @@ brew "nvm"
 brew "ollama"
 # Development kit for the Java programming language
 brew "openjdk"
-# Execute binaries from Python packages in isolated environments
-brew "pipx"
 # Package compiler and linker metadata toolkit
 brew "pkgconf"
 # Pack repository contents into a single AI-friendly file
@@ -176,6 +172,19 @@ cask "zed"
 cask "zen-browser"
 # Video communication and virtual meeting platform
 cask "zoom"
+cask "chatgpt"
+cask "granola"
+cask "claude"
+cask "airtable"
+cask "nextdns"
+cask "granola"
+
+mas "Drafts", id: 1435957248
+mas "Windows App", id: 1295203466
+mas "TestFlight", id: 899247664
+mas "Xcode", id: 497799835
+
+
 vscode "github.copilot"
 vscode "github.copilot-chat"
 vscode "mechatroner.rainbow-csv"

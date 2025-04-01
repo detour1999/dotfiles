@@ -1,5 +1,15 @@
 #!/bin/bash
 
+# Set up error handling
+set -e  # Exit immediately if a command exits with a non-zero status
+set -u  # Treat unset variables as an error
+
+# Setup logging
+log_file="$HOME/.yadm_bootstrap.log"
+mkdir -p "$(dirname "$log_file")"
+exec > >(tee -a "$log_file") 2>&1
+echo "=== YADM Bootstrap started at $(date) ==="
+
 # Check if the operating system is macOS
 if [[ "$(uname)" == "Darwin" ]]; then
   echo "Running on macOS..."
@@ -8,22 +18,162 @@ if [[ "$(uname)" == "Darwin" ]]; then
   if ! command -v brew &> /dev/null; then
     echo "Homebrew not found, installing..."
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+    # Add Homebrew to PATH based on architecture
+    if [[ "$(uname -m)" == "arm64" ]]; then
+      echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> "$HOME/.zprofile"
+      eval "$(/opt/homebrew/bin/brew shellenv)"
+    else
+      echo 'eval "$(/usr/local/bin/brew shellenv)"' >> "$HOME/.zprofile"
+      eval "$(/usr/local/bin/brew shellenv)"
+    fi
   fi
+
+  # Ensure mas is installed for Mac App Store apps
+  if ! command -v mas &>/dev/null; then
+    echo "Installing mas for Mac App Store apps..."
+    brew install mas
+  fi
+
+  # Check if logged into Mac App Store and prompt to sign in if not
+  if ! mas account &>/dev/null; then
+    echo "⚠️ You are not signed into the Mac App Store."
+    echo "Mac App Store apps in your Brewfile cannot be installed without signing in."
+    echo ""
+
+    # Ask user if they want to sign in
+    read -p "Would you like to sign in to the Mac App Store now? (y/n) " -n 1 -r
+    echo ""
+
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+      # First try the preferred modern method
+      echo "Launching the Mac App Store app. Please sign in through the app..."
+      open -a "App Store"
+
+      # Wait for user confirmation
+      read -p "Press Enter once you've signed in through the Mac App Store app..." -r
+
+      # Check if sign-in was successful
+      if mas account &>/dev/null; then
+        echo "✅ Successfully signed in to the Mac App Store as $(mas account)."
+      else
+        echo "⚠️ Still not signed in to the Mac App Store. Trying alternative method..."
+
+        # Fallback to the CLI sign-in method (deprecated but might work on older macOS versions)
+        read -p "Enter your Apple ID email: " apple_id
+        mas signin "$apple_id" || {
+          echo "❌ Failed to sign in using the CLI method."
+          echo "Please sign in manually through the Mac App Store app before installing Mac App Store apps."
+        }
+      fi
+    else
+      echo "⚠️ Skipping Mac App Store sign-in. Mac App Store apps will not be installed."
+    fi
+  else
+    echo "✅ Already signed in to the Mac App Store as $(mas account)."
+  fi
+
+  # Create Brewfile directory if it doesn't exist
+  mkdir -p "$HOME/.config/brew"
 
   # Install packages from Brewfile if it exists
   if [ -f "$HOME/.config/brew/Brewfile" ]; then
     echo "Installing Brewfile packages..."
-    brew bundle --file="$HOME/.config/brew/Brewfile"
+    brew bundle --file="$HOME/.config/brew/Brewfile" || {
+      echo "Warning: Some Brewfile packages failed to install. Check the log for details."
+    }
   else
-    echo "Brewfile not found!"
+    echo "Brewfile not found! Creating a new one..."
+    brew bundle dump --file="$HOME/.config/brew/Brewfile" --all
   fi
 
-  # Set up a cron job to update the Brewfile weekly
-  # First, we check if the cron job already exists to avoid duplicate entries
-  crontab -l | grep -q 'brew bundle dump' || {
-    echo "Setting up weekly Brewfile update cron job..."
-    (crontab -l ; echo "0 0 * * 0 $HOME/.config/yadm/update_brewfile.sh") | crontab -
-  }
+  # Set up launchd services using the launchd manager script
+  if [ -f "$HOME/.config/yadm/launchd_manager.sh" ]; then
+    echo "Setting up launchd services..."
+    chmod +x "$HOME/.config/yadm/launchd_manager.sh"
+    "$HOME/.config/yadm/launchd_manager.sh" setup-all
+  else
+    echo "Warning: launchd manager script not found. Scheduled tasks will not be set up."
+  fi
+
+  # Install VSCode extensions if VSCode is installed
+  if command -v code &>/dev/null; then
+    echo "Installing VSCode extensions..."
+    extensions=(
+      "github.copilot"
+      "github.copilot-chat"
+      "mechatroner.rainbow-csv"
+      "ms-python.debugpy"
+      "ms-python.python"
+      "ms-python.vscode-pylance"
+      "ms-vscode-remote.remote-containers"
+    )
+
+    for ext in "${extensions[@]}"; do
+      code --install-extension "$ext" || echo "Failed to install $ext"
+    done
+  fi
+
+  # Apply saved macOS defaults
+  if [ -f "$HOME/.config/yadm/macos_defaults_load.sh" ]; then
+    echo "Applying saved macOS defaults..."
+    chmod +x "$HOME/.config/yadm/macos_defaults_load.sh"
+    bash "$HOME/.config/yadm/macos_defaults_load.sh"
+  else
+    echo "No saved macOS defaults found. Will dump current settings."
+    if [ -f "$HOME/.config/yadm/macos_defaults_dump.sh" ]; then
+      echo "Dumping current macOS defaults for future use..."
+      chmod +x "$HOME/.config/yadm/macos_defaults_dump.sh"
+      bash "$HOME/.config/yadm/macos_defaults_dump.sh"
+    else
+      echo "Warning: macOS defaults dump script not found."
+    fi
+  fi
+
+  # Install GitHub-hosted applications
+  echo "Installing GitHub-hosted applications..."
+
+  # Source the installer script if it exists
+  INSTALLER_SCRIPT="$HOME/.config/yadm/github_app_installer.sh"
+  if [ -f "$INSTALLER_SCRIPT" ]; then
+    chmod +x "$INSTALLER_SCRIPT"
+    source "$INSTALLER_SCRIPT"
+
+    # Install Sky.app (Bluesky client)
+    install_github_app "jcsalterego/Sky.app" "Sky"
+
+    # Add any other GitHub apps you want to install
+    # Examples:
+    # install_github_app "sindresorhus/Gifski" "Gifski"
+    # install_github_app "exelban/stats" "Stats"
+
+    echo "GitHub app installation completed."
+  else
+    echo "Warning: GitHub app installer script not found at $INSTALLER_SCRIPT"
+    echo "Skipping GitHub app installation."
+  fi
+
 else
-  echo "Not running on macOS. Skipping Homebrew installation."
+  echo "Not running on macOS. Skipping macOS-specific configuration."
 fi
+
+# Set up your preferred shell
+preferred_shell="/usr/local/bin/zsh"
+if [[ "$(uname)" == "Darwin" ]] && [[ -f "$preferred_shell" ]] && [[ "$SHELL" != "$preferred_shell" ]]; then
+  echo "Setting up $preferred_shell as default shell..."
+  chsh -s "$preferred_shell"
+fi
+
+# Configure Git (if not already configured)
+if ! git config --global user.name &>/dev/null; then
+  echo "Configuring Git..."
+  read -p "Enter your Git username: " git_username
+  read -p "Enter your Git email: " git_email
+
+  git config --global user.name "$git_username"
+  git config --global user.email "$git_email"
+  git config --global init.defaultBranch main
+  git config --global pull.rebase false
+fi
+
+echo "=== YADM Bootstrap completed at $(date) ==="
