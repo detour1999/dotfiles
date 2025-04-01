@@ -8,10 +8,12 @@ set -u
 # Path constants
 LAUNCH_AGENTS_DIR="$HOME/Library/LaunchAgents"
 CONFIG_DIR="$HOME/.config/yadm"
+MACOS_CONFIG_DIR="$HOME/.config/macOS"
 
 # Create required directories
 mkdir -p "$LAUNCH_AGENTS_DIR"
 mkdir -p "$CONFIG_DIR"
+mkdir -p "$MACOS_CONFIG_DIR"
 
 # Define standard services as an array of service definitions
 # Each service is defined as: "name:script_path:weekday:hour:minute"
@@ -50,9 +52,9 @@ create_launchd_plist() {
     <integer>$minute</integer>
   </dict>
   <key>StandardErrorPath</key>
-  <string>$CONFIG_DIR/$name-error.log</string>
+  <string>$MACOS_CONFIG_DIR/logs/$name-error.log</string>
   <key>StandardOutPath</key>
-  <string>$CONFIG_DIR/$name-output.log</string>
+  <string>$MACOS_CONFIG_DIR/logs/$name-output.log</string>
 </dict>
 </plist>
 EOF
@@ -71,6 +73,9 @@ setup_service() {
   local plist_path="$LAUNCH_AGENTS_DIR/com.user.$name.plist"
 
   echo "Setting up service: $name"
+
+  # Make sure logs directory exists
+  mkdir -p "$MACOS_CONFIG_DIR/logs"
 
   # Check if script exists
   if [ ! -f "$script_path" ]; then

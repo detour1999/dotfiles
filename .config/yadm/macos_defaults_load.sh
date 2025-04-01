@@ -8,7 +8,7 @@ set -u
 echo "=== Starting macOS defaults load at $(date) ==="
 
 # Define path for defaults
-DEFAULTS_DIR="$HOME/.config/yadm/macos_defaults"
+DEFAULTS_DIR="$HOME/.config/macOS/defaults"
 
 # Check if directory exists
 if [ ! -d "$DEFAULTS_DIR" ]; then

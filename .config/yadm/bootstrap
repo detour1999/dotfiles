@@ -115,16 +115,19 @@ if [[ "$(uname)" == "Darwin" ]]; then
   fi
 
   # Apply saved macOS defaults
-  if [ -f "$HOME/.config/yadm/macos_defaults_load.sh" ]; then
+  MACOS_DEFAULTS_LOAD="$HOME/.config/yadm/macos_defaults_load.sh"
+  MACOS_DEFAULTS_DUMP="$HOME/.config/yadm/macos_defaults_dump.sh"
+
+  if [ -f "$MACOS_DEFAULTS_LOAD" ]; then
     echo "Applying saved macOS defaults..."
-    chmod +x "$HOME/.config/yadm/macos_defaults_load.sh"
-    bash "$HOME/.config/yadm/macos_defaults_load.sh"
+    chmod +x "$MACOS_DEFAULTS_LOAD"
+    bash "$MACOS_DEFAULTS_LOAD"
   else
-    echo "No saved macOS defaults found. Will dump current settings."
-    if [ -f "$HOME/.config/yadm/macos_defaults_dump.sh" ]; then
+    echo "No saved macOS defaults load script found. Will dump current settings."
+    if [ -f "$MACOS_DEFAULTS_DUMP" ]; then
       echo "Dumping current macOS defaults for future use..."
-      chmod +x "$HOME/.config/yadm/macos_defaults_dump.sh"
-      bash "$HOME/.config/yadm/macos_defaults_dump.sh"
+      chmod +x "$MACOS_DEFAULTS_DUMP"
+      bash "$MACOS_DEFAULTS_DUMP"
     else
       echo "Warning: macOS defaults dump script not found."
     fi

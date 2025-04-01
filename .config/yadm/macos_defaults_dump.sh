@@ -9,7 +9,7 @@ set -u
 echo "=== Starting macOS defaults dump at $(date) ==="
 
 # Create output directory
-DEFAULTS_DIR="$HOME/.config/yadm/macos_defaults"
+DEFAULTS_DIR="$HOME/.config/macOS/defaults"
 mkdir -p "$DEFAULTS_DIR"
 
 # Create timestamp for backup
