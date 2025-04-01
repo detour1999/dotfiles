@@ -112,8 +112,6 @@ cask "github"
 cask "google-cloud-sdk"
 # Companion app for Home Assistant home automation software
 cask "home-assistant"
-# Terminal emulator as alternative to Apple's Terminal app
-cask "iterm2"
 # Noise cancelling application
 cask "krisp"
 # Discover, download, and run local LLMs

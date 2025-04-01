@@ -75,21 +75,30 @@ done
 
 # Try to include some common third-party apps if they exist
 THIRD_PARTY_APPS=(
-  "com.googlecode.iterm2"
-  "com.microsoft.VSCode"
-  "com.apple.dt.Xcode"
-  "com.sublimetext.3"
 )
 
-for app in "${THIRD_PARTY_APPS[@]}"; do
-  # Check if app has any defaults before dumping
-  if defaults read "$app" &>/dev/null; then
-    dump_domain "$app"
-  fi
-done
+# Only process third-party apps if the array isn't empty
+if [ ${#THIRD_PARTY_APPS[@]} -gt 0 ]; then
+  echo "Checking for third-party app preferences..."
+  for app in "${THIRD_PARTY_APPS[@]}"; do
+    # Skip empty strings
+    if [ -z "$app" ]; then
+      continue
+    fi
+
+    # Check if app has any defaults before dumping
+    if defaults read "$app" &>/dev/null; then
+      dump_domain "$app"
+    fi
+  done
+else
+  echo "No third-party apps configured for backup."
+fi
 
 # Clean up old backups (keep last 10)
-find "$BACKUP_DIR" -type f -name "*.plist.*" | sort | head -n -50 | xargs rm -f 2>/dev/null || true
+# find "$BACKUP_DIR" -type f -name "*.plist.*" | sort | head -n -50 | xargs rm -f 2>/dev/null || true
+find "$BACKUP_DIR" -type f -name "*.plist.*" | sort | awk '{ lines[NR] = $0 } END { for(i=1; i<=NR-50; i++) print lines[i] }' | xargs rm -f 2>/dev/null || true
+
 
 echo "=== macOS defaults dump completed at $(date) ==="
 echo "Defaults saved to: $DEFAULTS_DIR"
