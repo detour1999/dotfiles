@@ -149,6 +149,5 @@ export JAVA_HOME="/opt/homebrew/opt/openjdk"
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
 export GPG_TTY=$(tty)
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
 eval "$(mise activate zsh)"
 ulimit -n 10240
