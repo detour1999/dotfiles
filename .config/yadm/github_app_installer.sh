@@ -121,6 +121,11 @@ install_latest_github_app() {
   echo "$APP_NAME.app $LATEST_VERSION has been installed successfully."
 }
 
-# Example usage:
-# install_github_app "jcsalterego/Sky.app" "Sky"
-# install_github_app "sindresorhus/Gifski" "Gifski"
+# If the script is being run directly, allow calling via CLI
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+  if [ "$#" -ne 2 ]; then
+    echo "Usage: $0 \"owner/repo\" \"AppName\""
+    exit 1
+  fi
+  install_github_app "$1" "$2"
+fi
