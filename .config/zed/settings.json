@@ -29,8 +29,18 @@
   "buffer_font_size": 16.0,
   "format_on_save": "on",
   "soft_wrap": "editor_width",
+  "base_keymap": "SublimeText",
+  // "ui_font_family": "Consolas for Powerline",
+  "buffer_font_family": "Consolas for Powerline",
+  "buffer_line_height": { "custom": 1.6 },
+  "current_line_highlight": "gutter",
+  "selection_highlight": false,
+  "indent_guides": {
+    "coloring": "indent_aware",
+    "background_coloring": "indent_aware"
+  },
   "terminal": {
-    "font_family": "Consolas", //"Consolas",
+    "font_family": "Consolas for Powerline", //"Consolas",
     "font_size": 18,
     "cell_width": 1.0,
     "line_height": {
