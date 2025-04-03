@@ -39,5 +39,5 @@
 
 
 theme = Dracula+
-font-family = Consolas
-font-size = 16
+font-family = "Consolas for Powerline"
+font-size = 24
