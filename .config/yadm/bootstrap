@@ -167,16 +167,4 @@ if [[ "$(uname)" == "Darwin" ]] && [[ -f "$preferred_shell" ]] && [[ "$SHELL" !=
   chsh -s "$preferred_shell"
 fi
 
-# Configure Git (if not already configured)
-if ! git config --global user.name &>/dev/null; then
-  echo "Configuring Git..."
-  read -p "Enter your Git username: " git_username
-  read -p "Enter your Git email: " git_email
-
-  git config --global user.name "$git_username"
-  git config --global user.email "$git_email"
-  git config --global init.defaultBranch main
-  git config --global pull.rebase false
-fi
-
 echo "=== YADM Bootstrap completed at $(date) ==="
