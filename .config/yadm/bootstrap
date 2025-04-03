@@ -167,4 +167,22 @@ if [[ "$(uname)" == "Darwin" ]] && [[ -f "$preferred_shell" ]] && [[ "$SHELL" !=
   chsh -s "$preferred_shell"
 fi
 
+# Check if user wants to set up SSH for YADM
+echo ""
+echo "=== YADM SSH Setup ==="
+read -p "Would you like to decrypt YADM files and set up SSH? (y/n) " -n 1 -r
+echo ""
+
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+  # Ensure the script exists
+  if [ -f "$HOME/.config/yadm/yadm_post_decrypt.sh" ]; then
+    echo "Running YADM post-decrypt setup..."
+    chmod +x "$HOME/.config/yadm/yadm_post_decrypt.sh"
+    "$HOME/.config/yadm/yadm_post_decrypt.sh"
+  else
+    echo "Error: Post-decrypt script not found at $HOME/.config/yadm/yadm_post_decrypt.sh"
+    echo "Please make sure the script exists before running this step."
+  fi
+fi
+
 echo "=== YADM Bootstrap completed at $(date) ==="
