@@ -1,35 +1,3 @@
 co: pr checkout
-unresolved-review-comments: |-
-    !OWNER=$(gh repo view --json owner -q '.owner.login')
-    REPO=$(gh repo view --json name -q '.name')
-    PR=$(gh pr view --json number -q '.number' 2>/dev/null)
-    if [[ -z "$PR" ]]; then
-      echo "❌ No PR found for this branch." >&2
-      exit 1
-    fi
-    gh api graphql -f query='
-      query($owner: String!, $name: String!, $pr: Int!) {
-        repository(owner: $owner, name: $name) {
-          pullRequest(number: $pr) {
-            reviewThreads(first: 100) {
-              nodes {
-                isResolved
-                comments(first: 100) {
-                  nodes {
-                    body
-                    path
-                    author { login }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    ' -f owner="$OWNER" -f name="$REPO" -F pr=$PR \
-    | jq -r '
-      .data.repository.pullRequest.reviewThreads.nodes[]
-      | select(.isResolved == false)
-      | .comments.nodes[]
-      | "\(.author.login): [\(.path)] \(.body)"
-    '
+review-thread-dump: '!~/.config/gh/scripts/review-thread-dump'
+unresolved-review-comments: '!~/.config/gh/scripts/unresolved-review-comments'
