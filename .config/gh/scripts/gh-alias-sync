@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+gh alias list > "$HOME/.config/gh/aliases.yaml"
+echo "✅ GitHub CLI aliases exported to ~/.config/gh/aliases.yaml"
+

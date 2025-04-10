@@ -20,6 +20,7 @@ mkdir -p "$MACOS_CONFIG_DIR"
 STANDARD_SERVICES=(
   "brewfile-update:$CONFIG_DIR/update_brewfile.sh:0:0:0"
   "defaults-dump:$CONFIG_DIR/macos_defaults_dump.sh:6:12:0"
+  "gh-alias-sync:$HOME/.config/gh/scripts/gh-alias-sync:1:9:30"
 )
 
 # Function to create a launchd plist

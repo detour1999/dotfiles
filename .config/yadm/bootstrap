@@ -185,4 +185,11 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
   fi
 fi
 
+# Set up GitHub CLI aliases
+if command -v gh >/dev/null && [ -f "$HOME/.config/gh/aliases.yaml" ]; then
+  echo "🔁 Importing GitHub CLI aliases..."
+  gh alias import < "$HOME/.config/gh/aliases.yaml"
+fi
+
+
 echo "=== YADM Bootstrap completed at $(date) ==="
