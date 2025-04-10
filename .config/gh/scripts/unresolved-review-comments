@@ -1,0 +1,84 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+OWNER=$(gh repo view --json owner -q '.owner.login')
+REPO=$(gh repo view --json name -q '.name')
+PR=$(gh pr view --json number -q '.number' 2>/dev/null)
+
+if [[ -z "$PR" ]]; then
+  echo "❌ No PR found for this branch." >&2
+  exit 1
+fi
+
+AFTER=""
+HAS_NEXT_PAGE=true
+ALL_THREADS=()
+
+while [ "$HAS_NEXT_PAGE" = true ]; do
+  RESPONSE=$(gh api graphql -f query='
+    query($owner: String!, $name: String!, $pr: Int!, $after: String) {
+      repository(owner: $owner, name: $name) {
+        pullRequest(number: $pr) {
+          reviewThreads(first: 100, after: $after) {
+            pageInfo {
+              hasNextPage
+              endCursor
+            }
+            nodes {
+              isResolved
+              comments(first: 100) {
+                nodes {
+                  body
+                  path
+                  originalPosition
+                  author { login }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ' -f owner="$OWNER" -f name="$REPO" -F pr=$PR ${AFTER:+-f after="$AFTER"})
+
+  HAS_NEXT_PAGE=$(echo "$RESPONSE" | jq -r '.data.repository.pullRequest.reviewThreads.pageInfo.hasNextPage')
+  AFTER=$(echo "$RESPONSE" | jq -r '.data.repository.pullRequest.reviewThreads.pageInfo.endCursor')
+
+  CHUNK=$(echo "$RESPONSE" | jq -c '
+    .data.repository.pullRequest.reviewThreads.nodes[]
+    | select(.isResolved == false)
+    | {resolved: .isResolved, comments: .comments.nodes}
+  ')
+
+  if [[ -n "$CHUNK" ]]; then
+    while IFS= read -r thread; do
+      ALL_THREADS+=("$thread")
+    done <<< "$CHUNK"
+  fi
+done
+
+OUTPUT_FILE=${1:-"unresolved_review_comments.txt"}
+
+if [[ "${#ALL_THREADS[@]}" -gt 0 ]]; then
+  printf "%s\n" "${ALL_THREADS[@]}" | jq -s '
+    .[]
+    | . as $thread
+    | $thread.comments
+    | group_by(.path)[] |
+      "# File: " + .[0].path + "\n\n" +
+      (
+        map(
+          .author.login
+          + (if .originalPosition != null then " (line " + (.originalPosition|tostring) + ")" else "" end)
+          + ":\n"
+          + "> " + (.body | gsub("\r"; "") | gsub("\n"; "\n> "))
+          + "\n---\n"
+        ) | join("\n")
+      )
+      + "==================================================\n"
+  ' > "$OUTPUT_FILE"
+
+  echo "✅ Saved unresolved review comments to: $OUTPUT_FILE"
+else
+  echo "✅ No unresolved review threads found!"
+fi
