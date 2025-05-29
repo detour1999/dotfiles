@@ -41,3 +41,4 @@
 theme = Dracula+
 font-family = "Consolas for Powerline"
 font-size = 24
+keybind = shift+enter=text:\n

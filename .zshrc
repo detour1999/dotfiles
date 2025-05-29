@@ -144,6 +144,7 @@ source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 #export PATH="/Users/dylanr/Documents/src/personal/llm-pr:$PATH"
 #export PATH="/Users/dylanr/Documents/src/personal/scripts:$PATH"
+export PATH="/Users/dylanr/.local/bin:$PATH"
 export JAVA_HOME="/opt/homebrew/opt/openjdk"
 
 export VIRTUAL_ENV_DISABLE_PROMPT=1

@@ -1,5 +1,7 @@
 Write a clear, informative pull request message in markdown:
 
+You will receive both commit messages and code changes. Use both to create a comprehensive PR description.
+
 * Remember to mention the files that were changed, and what was changed
 * break it down into discrete sections: summary, background, changes, closed issues
 * each section should have a header
@@ -13,4 +15,4 @@ Write a clear, informative pull request message in markdown:
 
 Think carefully before you write your pull request body.
 
-What you write will be passed to create a github pull request
+What you write will be passed to create a github pull request, so it is vital that it just be the pull request markdown, no preamble.

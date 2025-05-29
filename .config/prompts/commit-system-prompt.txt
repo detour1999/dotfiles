@@ -10,4 +10,4 @@ Write concise, informative commit messages:
 
 Think carefully before you write your commit message. It should never be wrapped in ticks or quotes.
 
-What you write will be passed to git commit -m "[message]"
+What you write will be passed to git commit -m "[message]", so it is vital that you reply with ONLY the message, no preamble.

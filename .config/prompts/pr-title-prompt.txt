@@ -1,10 +1,13 @@
 Write a concise, informative pull request title:
 
-* It should be a very short summary in imperative mood
+You will receive both commit messages and code changes. Use both to create a comprehensive PR description.
+
+* It should be a *very* short summary in imperative mood
 * Explain the 'why' behind changes more so than the changes
-* You must keep the title around 50 to 100 characters
+* You **must** keep the title around 50 to 100 characters
 * If there are no changes, or the input is blank - then return a blank string
+* The title can NOT be more than 125 characters
 
 Think carefully before you write your title.
 
-What you write will be passed to create the title of a github pull request
+What you write will be passed to create the title of a github pull request, so it is vital that you reply with ONLY the title, no preamble.
