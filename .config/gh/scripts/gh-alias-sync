@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# Set up PATH for launchd
+export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
+
 gh alias list > "$HOME/.config/gh/aliases.yaml"
 echo "✅ GitHub CLI aliases exported to ~/.config/gh/aliases.yaml"
 

@@ -32,3 +32,6 @@ target/
 .settings/
 xcuserdata/
 DerivedData/
+
+# Firebase credentials and tokens
+configstore/firebase-tools.json

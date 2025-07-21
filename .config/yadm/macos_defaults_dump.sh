@@ -2,6 +2,9 @@
 # Script to dump macOS defaults for backup and restoration
 # Should be run periodically to keep settings up to date
 
+# Set up PATH for launchd
+export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
+
 # Set up error handling
 set -e
 set -u

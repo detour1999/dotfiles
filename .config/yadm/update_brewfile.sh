@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Set up PATH for launchd
+export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 # Path to your Brewfile
 BREWFILE="$HOME/.config/brew/Brewfile"
 
