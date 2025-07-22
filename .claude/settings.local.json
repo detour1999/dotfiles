@@ -1,7 +1,10 @@
 {
   "permissions": {
     "allow": [
-      "Bash(yadm status:*)"
+      "Bash(yadm status:*)",
+      "Bash(yadm diff:*)",
+      "Bash(yadm log:*)",
+      "Bash(ls:*)"
     ],
     "deny": []
   }

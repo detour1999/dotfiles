@@ -21,6 +21,7 @@ STANDARD_SERVICES=(
   "brewfile-update:$CONFIG_DIR/update_brewfile.sh:0:0:0"
   "defaults-dump:$CONFIG_DIR/macos_defaults_dump.sh:6:12:0"
   "gh-alias-sync:$HOME/.config/gh/scripts/gh-alias-sync:1:9:30"
+  "yadm-auto-commit:$CONFIG_DIR/yadm_auto_commit.sh:3:12:30"
 )
 
 # Function to create a launchd plist
