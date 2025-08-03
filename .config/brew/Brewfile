@@ -92,6 +92,7 @@ cask "whatsapp"
 cask "zed"
 cask "zen"
 cask "zoom"
+mas "ColorSlurp", id: 1287239339
 mas "Drafts", id: 1435957248
 mas "NextDNS", id: 1464122853
 mas "Tailscale", id: 1475387142
