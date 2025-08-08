@@ -4,7 +4,8 @@
       "Bash(yadm status:*)",
       "Bash(yadm diff:*)",
       "Bash(yadm log:*)",
-      "Bash(ls:*)"
+      "Bash(ls:*)",
+      "Bash(find:*)"
     ],
     "deny": []
   }

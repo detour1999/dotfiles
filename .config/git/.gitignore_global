@@ -35,3 +35,24 @@ DerivedData/
 
 # Firebase credentials and tokens
 configstore/firebase-tools.json
+
+# Claude Code and AI tools
+.claude/settings.local.json
+.private-journal/
+
+# Python virtual environments and tools
+.venv/
+venv/
+env/
+.python-version
+.uv/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# OS thumbnails and metadata
+Thumbs.db
+ehthumbs.db
+Desktop.ini
