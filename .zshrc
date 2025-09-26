@@ -152,3 +152,4 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 export GPG_TTY=$(tty)
 eval "$(mise activate zsh)"
 ulimit -n 10240
+export CLAUDE_CODE_USE_BEDROCK=1

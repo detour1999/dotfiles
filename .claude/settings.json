@@ -1,0 +1,14 @@
+{
+  "model": "opusplan",
+  "feedbackSurveyState": {
+    "lastShownTime": 1753982508427
+  },
+  "awsAuthRefresh": "aws sso login --profile <PROFILE_NAME>",
+  "env": {
+    "AWS_PROFILE": "2389-cc",
+    "AWS_REGION": "us-east-1",
+    "CLAUDE_CODE_USE_BEDROCK": "1",
+    "ANTHROPIC_MODEL": "global.anthropic.claude-sonnet-4-20250514-v1:0",
+    "ANTHROPIC_SMALL_FAST_MODEL": "us.anthropic.claude-3-5-haiku-20241022-v1:0"
+  }
+}
