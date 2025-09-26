@@ -3,7 +3,7 @@
   "feedbackSurveyState": {
     "lastShownTime": 1753982508427
   },
-  "awsAuthRefresh": "aws sso login --profile <PROFILE_NAME>",
+  "awsAuthRefresh": "aws sso login --profile 2389-cc",
   "env": {
     "AWS_PROFILE": "2389-cc",
     "AWS_REGION": "us-east-1",
