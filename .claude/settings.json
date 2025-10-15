@@ -1,10 +1,14 @@
 {
-  "feedbackSurveyState": {
-    "lastShownTime": 1753982508427
-  },
   "statusLine": {
     "type": "command",
     "command": "npx -y ccstatusline@latest",
     "padding": 0
-  }
+  },
+  "enabledPlugins": {
+    "superpowers@superpowers-marketplace": true
+  },
+  "feedbackSurveyState": {
+    "lastShownTime": 1753982508427
+  },
+  "alwaysThinkingEnabled": true
 }
