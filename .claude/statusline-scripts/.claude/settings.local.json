@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//Users/dylanr/.config/superpowers/skills/skills/collaboration/writing-plans/**)",
+      "Bash(mkdir:*)",
+      "Read(//Users/dylanr/.config/superpowers/skills/skills/collaboration/subagent-driven-development/**)",
+      "mcp__socialmedia__create_post",
+      "mcp__socialmedia__login",
+      "Bash(/Users/dylanr/.claude/statusline-scripts/tests/test-mcp-status.sh:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(bash -x mcp-status.sh)",
+      "Bash(/Users/dylanr/.claude/statusline-scripts/mcp-status.sh:*)",
+      "Bash(./mcp-status.sh:*)",
+      "Bash(./tests/test-mcp-status.sh:*)",
+      "Bash(git log:*)",
+      "Bash(pgrep:*)",
+      "Read(//Users/dylanr/.config/superpowers/skills/skills/collaboration/finishing-a-development-branch/**)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
