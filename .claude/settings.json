@@ -7,8 +7,8 @@
   "enabledPlugins": {
     "superpowers@superpowers-marketplace": true
   },
+  "alwaysThinkingEnabled": false,
   "feedbackSurveyState": {
     "lastShownTime": 1753982508427
-  },
-  "alwaysThinkingEnabled": true
+  }
 }
