@@ -5,8 +5,11 @@ brew "autoconf"
 brew "glib"
 brew "cairo"
 brew "cmake"
+brew "colima"
 brew "coreutils"
 brew "curl"
+brew "docker"
+brew "docker-compose"
 brew "fd"
 brew "harfbuzz"
 brew "pango"
@@ -97,6 +100,7 @@ cask "zen"
 cask "zoom"
 mas "ColorSlurp", id: 1287239339
 mas "Drafts", id: 1435957248
+mas "Keynote", id: 409183694
 mas "NextDNS", id: 1464122853
 mas "Tailscale", id: 1475387142
 mas "TestFlight", id: 899247664
