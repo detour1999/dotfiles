@@ -149,7 +149,13 @@ export JAVA_HOME="/opt/homebrew/opt/openjdk"
 
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
+# Disable Claude Code automatic terminal title so our hooks control it
+export CLAUDE_CODE_DISABLE_TERMINAL_TITLE=1
+
 export GPG_TTY=$(tty)
 eval "$(mise activate zsh)"
 ulimit -n 10240
 #export CLAUDE_CODE_USE_BEDROCK=1
+
+# Added by Antigravity
+export PATH="/Users/dylanr/.antigravity/antigravity/bin:$PATH"

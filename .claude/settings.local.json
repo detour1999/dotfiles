@@ -5,7 +5,16 @@
       "Bash(yadm diff:*)",
       "Bash(yadm log:*)",
       "Bash(ls:*)",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "WebFetch(domain:ghostty.org)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:code.claude.com)",
+      "Bash(xargs:*)",
+      "SlashCommand(/superpowers:brainstorm)",
+      "Skill(superpowers:using-git-worktrees)",
+      "Skill(superpowers:subagent-driven-development)",
+      "mcp__socialmedia__create_post",
+      "mcp__socialmedia__login"
     ],
     "deny": []
   }

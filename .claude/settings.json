@@ -1,4 +1,10 @@
 {
+  "permissions": {
+    "allow": [
+      "Bash(*skills/terminal-title/scripts/set_title.sh*)",
+      "Bash(printf:*)"
+    ]
+  },
   "statusLine": {
     "type": "command",
     "command": "npx -y ccstatusline@latest",
@@ -6,7 +12,8 @@
   },
   "enabledPlugins": {
     "superpowers@superpowers-marketplace": true,
-    "example-skills@anthropic-agent-skills": true
+    "example-skills@anthropic-agent-skills": true,
+    "2389@2389-skills": true
   },
   "alwaysThinkingEnabled": true,
   "feedbackSurveyState": {

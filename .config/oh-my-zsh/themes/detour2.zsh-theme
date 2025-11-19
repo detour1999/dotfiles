@@ -1,3 +1,16 @@
+# Function to detect if we're in a work directory
+function work_mode_indicator() {
+  local emoji=$(bash ~/.config/claude/helpers/get-emoji/run.sh)
+  case "$emoji" in
+    "💼")
+      echo "%{$fg_bold[blue]%}💼 "
+      ;;
+    *)
+      echo "%{$fg_bold[magenta]%}🎉 "
+      ;;
+  esac
+}
+
 # Function to check directory against conda environments
 function unused_conda_warning() {
   if [[ -z $CONDA_DEFAULT_ENV || $CONDA_DEFAULT_ENV == "base" ]]; then
@@ -41,7 +54,7 @@ function ssh_hostname() {
 }
 
 # Modified PROMPT that includes both warnings
-PROMPT='$(unused_venv_warning)$(conda_env_prompt_info)$(virtual_env_prompt_info)%{$fg_no_bold[cyan]%}%n%{$fg_no_bold[magenta]%}$(ssh_hostname)•%{$fg_no_bold[green]%}%3~$(git_prompt_info)%{$reset_color%}» '
+PROMPT='$(work_mode_indicator)$(unused_venv_warning)$(conda_env_prompt_info)$(virtual_env_prompt_info)%{$fg_no_bold[cyan]%}%n%{$fg_no_bold[magenta]%}$(ssh_hostname)•%{$fg_no_bold[green]%}%3~$(git_prompt_info)%{$reset_color%}» '
 
 # Rest of your theme remains unchanged
 RPROMPT='[%*]'
@@ -54,3 +67,22 @@ ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg_bold[yellow]%}⚡%{$fg_bold[blue]%})"
 
 export LSCOLORS="exfxcxdxbxegedabagacad"
 export LS_COLORS='no=00:fi=00:di=01;34:ln=00;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=41;33;01:ex=00;32:*.cmd=00;32:*.exe=01;32:*.com=01;32:*.bat=01;32:*.btm=01;32:*.dll=01;32:*.tar=00;31:*.tbz=00;31:*.tgz=00;31:*.rpm=00;31:*.deb=00;31:*.arj=00;31:*.taz=00;31:*.lzh=00;31:*.lzma=00;31:*.zip=00;31:*.zoo=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31:*.bz2=00;31:*.tb2=00;31:*.tz2=00;31:*.tbz2=00;31:*.avi=01;35:'
+
+# Get the current work/fun mode marker
+function get_mode_marker() {
+  bash ~/.config/claude/helpers/get-emoji/run.sh
+}
+
+# Update terminal title with work/fun indicator
+function update_terminal_title() {
+  local mode_marker=$(get_mode_marker)
+  # Export for use by other tools (like Claude Code hooks)
+  export TERMINAL_TITLE_EMOJI="$mode_marker"
+  # Set terminal title (works in most terminal emulators)
+  print -Pn "\e]0;${mode_marker} %~\a"
+}
+
+# Hook to update title before each prompt and on directory change
+autoload -U add-zsh-hook
+add-zsh-hook precmd update_terminal_title
+add-zsh-hook chpwd update_terminal_title
