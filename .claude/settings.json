@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Bash(*skills/terminal-title/scripts/set_title.sh*)",
-      "Bash(printf:*)"
+      "Bash(printf:*)",
+      "Skill(2389:terminal-title)"
     ]
   },
   "statusLine": {
