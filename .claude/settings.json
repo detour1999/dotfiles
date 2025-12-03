@@ -1,7 +1,7 @@
 {
   "permissions": {
     "allow": [
-      "Bash(*skills/terminal-title/scripts/set_title.sh*)",
+      "Bash(bash *skills/terminal-title/scripts/set_title.sh:*)",
       "Bash(printf:*)",
       "Skill(2389:terminal-title)"
     ]
@@ -14,7 +14,8 @@
   "enabledPlugins": {
     "superpowers@superpowers-marketplace": true,
     "example-skills@anthropic-agent-skills": true,
-    "2389@2389-skills": true
+    "2389@2389-skills": true,
+    "superpowers-developing-for-claude-code@superpowers-marketplace": true
   },
   "alwaysThinkingEnabled": true,
   "feedbackSurveyState": {
