@@ -169,10 +169,23 @@ if [[ "$(uname)" == "Darwin" ]]; then
   fi
 
   # Install Oh-My-Zsh if not already installed
-  if [ ! -d "$HOME/.oh-my-zsh" ]; then
+  # Check if oh-my-zsh.sh exists (not just the directory)
+  if [ ! -f "$HOME/.oh-my-zsh/oh-my-zsh.sh" ]; then
     echo "Installing Oh-My-Zsh..."
+
+    # Remove empty directory if it exists
+    if [ -d "$HOME/.oh-my-zsh" ] && [ -z "$(ls -A "$HOME/.oh-my-zsh")" ]; then
+      echo "Removing empty Oh-My-Zsh directory..."
+      rm -rf "$HOME/.oh-my-zsh"
+    fi
+
     RUNZSH=no KEEP_ZSHRC=yes sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-    echo "✅ Oh-My-Zsh installed"
+
+    if [ -f "$HOME/.oh-my-zsh/oh-my-zsh.sh" ]; then
+      echo "✅ Oh-My-Zsh installed successfully"
+    else
+      echo "⚠️ Oh-My-Zsh installation may have failed. Please check manually."
+    fi
   else
     echo "✅ Oh-My-Zsh already installed"
   fi
