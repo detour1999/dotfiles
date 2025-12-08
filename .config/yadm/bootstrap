@@ -79,9 +79,21 @@ if [[ "$(uname)" == "Darwin" ]]; then
   # Install packages from Brewfile if it exists
   if [ -f "$HOME/.config/brew/Brewfile" ]; then
     echo "Installing Brewfile packages..."
-    brew bundle --file="$HOME/.config/brew/Brewfile" || {
-      echo "Warning: Some Brewfile packages failed to install. Check the log for details."
-    }
+
+    # Check if signed into Mac App Store
+    if mas account &>/dev/null; then
+      # Signed in - install everything including MAS apps
+      brew bundle --file="$HOME/.config/brew/Brewfile" || {
+        echo "Warning: Some Brewfile packages failed to install. Check the log for details."
+      }
+    else
+      # Not signed in - skip MAS apps
+      echo "⚠️ Not signed into Mac App Store. Installing only brew/cask/vscode packages (skipping mas)..."
+      brew bundle --file="$HOME/.config/brew/Brewfile" --no-mas || {
+        echo "Warning: Some Brewfile packages failed to install. Check the log for details."
+      }
+      echo "ℹ️ To install Mac App Store apps later, sign in and run: brew bundle --file=$HOME/.config/brew/Brewfile"
+    fi
   else
     echo "Brewfile not found! Creating a new one..."
     brew bundle dump --file="$HOME/.config/brew/Brewfile" --all
