@@ -168,6 +168,15 @@ if [[ "$(uname)" == "Darwin" ]]; then
     echo "Skipping GitHub app installation."
   fi
 
+  # Install Oh-My-Zsh if not already installed
+  if [ ! -d "$HOME/.oh-my-zsh" ]; then
+    echo "Installing Oh-My-Zsh..."
+    RUNZSH=no KEEP_ZSHRC=yes sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    echo "✅ Oh-My-Zsh installed"
+  else
+    echo "✅ Oh-My-Zsh already installed"
+  fi
+
 else
   echo "Not running on macOS. Skipping macOS-specific configuration."
 fi
