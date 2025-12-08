@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Skill(2389:terminal-title)",
+      "Bash(bash:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
