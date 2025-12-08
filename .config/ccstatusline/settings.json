@@ -1,0 +1,105 @@
+{
+  "version": 3,
+  "lines": [
+    [
+      {
+        "id": "cd6079a3-473a-41f8-b799-8ba03d3e2ffd",
+        "type": "git-branch"
+      },
+      {
+        "id": "f5e95a6a-29f9-45ce-8321-3e95d7540da0",
+        "type": "custom-text",
+        "customText": "-"
+      },
+      {
+        "id": "e1d91206-4efe-4080-ab00-f6abcfdf0b3f",
+        "type": "git-worktree"
+      },
+      {
+        "id": "b75d8cd4-853e-4eb7-96ba-0cc8286895fc",
+        "type": "separator"
+      },
+      {
+        "id": "26184675-cb01-4c6d-99ea-670c855d70e1",
+        "type": "git-changes",
+        "color": "brightRed"
+      }
+    ],
+    [
+      {
+        "id": "e8da8fcc-ed1e-49bc-a4dd-24fe8b2055d1",
+        "type": "custom-command",
+        "commandPath": "~/.config/claude/helpers/smart-pwd/run.sh"
+      },
+      {
+        "id": "9a550916-4b96-40c8-82f8-e48d72edda80",
+        "type": "separator"
+      },
+      {
+        "id": "5c5186ab-2b0f-473f-be7c-1c488d7b55c7",
+        "type": "model"
+      }
+    ],
+    [
+      {
+        "id": "eb00a23e-3da1-49e9-b3f0-ca25940f7520",
+        "type": "context-percentage-usable"
+      },
+      {
+        "id": "a01ec18e-51fb-46ef-94a5-abc524a36915",
+        "type": "separator"
+      },
+      {
+        "id": "1616c4cc-6d60-45e1-8cfd-6444b5a3feb5",
+        "type": "context-length"
+      },
+      {
+        "id": "6d8dabf6-4e3d-4ca7-80ec-2bc3bb912ea9",
+        "type": "separator"
+      },
+      {
+        "id": "b89469c8-7997-4ac4-8ac1-7ac6023ca9de",
+        "type": "session-cost"
+      },
+      {
+        "id": "8afaf59c-ef26-47e3-8b7d-8e01b9661bfb",
+        "type": "custom-text",
+        "customText": "("
+      },
+      {
+        "id": "332a6682-7de2-436c-a85e-6aa81631dc35",
+        "type": "session-clock"
+      },
+      {
+        "id": "a5afe134-cf23-4f83-adce-95dbd4acba9b",
+        "type": "custom-text",
+        "customText": ")"
+      }
+    ],
+    [
+      {
+        "id": "cb879006-8ff4-4371-8f87-9a0158e8795c",
+        "type": "custom-command",
+        "color": "magenta",
+        "commandPath": "~/.config/claude/helpers/mcp-status/run.sh"
+      }
+    ]
+  ],
+  "flexMode": "full-minus-40",
+  "compactThreshold": 60,
+  "colorLevel": 2,
+  "inheritSeparatorColors": false,
+  "globalBold": false,
+  "powerline": {
+    "enabled": false,
+    "separators": [
+      ""
+    ],
+    "separatorInvertBackground": [
+      false
+    ],
+    "startCaps": [],
+    "endCaps": [],
+    "autoAlign": false
+  }
+}
