@@ -57,6 +57,23 @@ if [ -d "$GPG_DIR" ]; then
   echo "✅ GPG permissions set"
 fi
 
+# Switch yadm remote from HTTPS to SSH (now that SSH keys are decrypted)
+echo "Switching yadm remote to SSH..."
+CURRENT_URL=$(yadm remote get-url origin 2>/dev/null)
+
+if [[ "$CURRENT_URL" == https://github.com/* ]]; then
+  # Extract user/repo from HTTPS URL
+  REPO_PATH=$(echo "$CURRENT_URL" | sed 's|https://github.com/||' | sed 's|\.git$||')
+  SSH_URL="git@github.com:${REPO_PATH}.git"
+
+  yadm remote set-url origin "$SSH_URL"
+  echo "✅ Switched yadm remote from HTTPS to SSH: $SSH_URL"
+elif [[ "$CURRENT_URL" == git@github.com:* ]]; then
+  echo "✅ Already using SSH remote: $CURRENT_URL"
+else
+  echo "⚠️ Unknown remote URL format: $CURRENT_URL"
+fi
+
 # Add any other post-decrypt setup here
 # Examples:
 # - Setting up git credentials
