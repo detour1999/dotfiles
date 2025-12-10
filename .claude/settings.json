@@ -14,10 +14,14 @@
   "enabledPlugins": {
     "superpowers@superpowers-marketplace": true,
     "example-skills@anthropic-agent-skills": true,
-    "2389@2389-skills": true,
-    "superpowers-developing-for-claude-code@superpowers-marketplace": true
+    "superpowers-developing-for-claude-code@superpowers-marketplace": true,
+    "2389@2389-research-marketplace": true,
+    "css-development@2389-research-marketplace": true,
+    "terminal-title@2389-research-marketplace": true,
+    "fresh-eyes-review@2389-research-marketplace": true,
+    "scenario-testing@2389-research-marketplace": true
   },
-  "alwaysThinkingEnabled": true,
+  "alwaysThinkingEnabled": false,
   "feedbackSurveyState": {
     "lastShownTime": 1753982508427
   }
