@@ -155,3 +155,6 @@ export GPG_TTY=$(tty)
 eval "$(mise activate zsh)"
 ulimit -n 10240
 #export CLAUDE_CODE_USE_BEDROCK=1
+
+# Quick connect to work machine via mosh
+alias mini='mosh --server=/opt/homebrew/bin/mosh-server dylanr@100.124.196.92'

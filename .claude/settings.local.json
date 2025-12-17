@@ -14,7 +14,8 @@
       "Skill(superpowers:using-git-worktrees)",
       "Skill(superpowers:subagent-driven-development)",
       "mcp__socialmedia__create_post",
-      "mcp__socialmedia__login"
+      "mcp__socialmedia__login",
+      "Skill(terminal-title)"
     ],
     "deny": []
   }
