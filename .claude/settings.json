@@ -19,9 +19,13 @@
     "css-development@2389-research-marketplace": true,
     "terminal-title@2389-research-marketplace": true,
     "fresh-eyes-review@2389-research-marketplace": true,
-    "scenario-testing@2389-research-marketplace": true
+    "scenario-testing@2389-research-marketplace": true,
+    "double-shot-latte@superpowers-marketplace": true,
+    "sysadmin@2389-research-marketplace": true,
+    "firebase-development@2389-research-marketplace": true,
+    "building-multiagent-systems@2389-research-marketplace": true,
+    "remote-system-maintenance@2389-research-marketplace": true
   },
-  "alwaysThinkingEnabled": false,
   "feedbackSurveyState": {
     "lastShownTime": 1753982508427
   }
