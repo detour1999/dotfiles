@@ -24,7 +24,8 @@
     "sysadmin@2389-research-marketplace": true,
     "firebase-development@2389-research-marketplace": true,
     "building-multiagent-systems@2389-research-marketplace": true,
-    "remote-system-maintenance@2389-research-marketplace": true
+    "remote-system-maintenance@2389-research-marketplace": true,
+    "test-kitchen@2389-research-marketplace": true
   },
   "feedbackSurveyState": {
     "lastShownTime": 1753982508427
