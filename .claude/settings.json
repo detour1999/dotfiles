@@ -1,4 +1,10 @@
 {
+  "mcpServers": {
+    "demo-mcp": {
+      "type": "url",
+      "url": "http://localhost:4200/mcp"
+    }
+  },
   "permissions": {
     "allow": [
       "Bash(bash *skills/terminal-title/scripts/set_title.sh:*)",
@@ -20,13 +26,15 @@
     "terminal-title@2389-research-marketplace": true,
     "fresh-eyes-review@2389-research-marketplace": true,
     "scenario-testing@2389-research-marketplace": true,
-    "double-shot-latte@superpowers-marketplace": true,
+    "double-shot-latte@superpowers-marketplace": false,
     "sysadmin@2389-research-marketplace": true,
     "firebase-development@2389-research-marketplace": true,
     "building-multiagent-systems@2389-research-marketplace": true,
     "remote-system-maintenance@2389-research-marketplace": true,
     "test-kitchen@2389-research-marketplace": true,
-    "experience-review@2389-research-marketplace": true
+    "experience-review@2389-research-marketplace": true,
+    "ceo-personal-os@2389-research-marketplace": true,
+    "worldview-synthesis@2389-research-marketplace": true
   },
   "feedbackSurveyState": {
     "lastShownTime": 1753982508427
