@@ -20,7 +20,7 @@ brew install yadm
 ### 2. Clone the dotfiles repository
 
 ```bash
-yadm clone git@github.com:detour1999/dotfiles.git
+yadm clone https://github.com/detour1999/dotfiles.git
 ```
 
 This pulls down all tracked dotfiles and automatically triggers the bootstrap script.
@@ -28,6 +28,9 @@ This pulls down all tracked dotfiles and automatically triggers the bootstrap sc
 ### 3. Run bootstrap manually (if needed)
 
 ```bash
+# Make bootstrap executable (sometimes needed after fresh clone)
+chmod +x ~/.config/yadm/bootstrap
+
 yadm bootstrap
 ```
 
