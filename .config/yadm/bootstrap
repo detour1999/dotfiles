@@ -190,6 +190,21 @@ if [[ "$(uname)" == "Darwin" ]]; then
     echo "✅ Oh-My-Zsh already installed"
   fi
 
+  # Install TPM (Tmux Plugin Manager) if not already installed
+  if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
+    echo "Installing Tmux Plugin Manager (TPM)..."
+    git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
+
+    if [ -d "$HOME/.tmux/plugins/tpm" ]; then
+      echo "✅ TPM installed successfully"
+      echo "ℹ️ Run 'prefix + I' inside tmux to install plugins"
+    else
+      echo "⚠️ TPM installation may have failed. Please check manually."
+    fi
+  else
+    echo "✅ TPM already installed"
+  fi
+
 else
   echo "Not running on macOS. Skipping macOS-specific configuration."
 fi
