@@ -82,7 +82,7 @@ function update_terminal_title() {
   print -Pn "\e]0;${mode_marker} %~\a"
 }
 
-# Hook to update title before each prompt and on directory change
+# Hook to update title on directory change only
+# (not precmd, so TUI apps can set their own titles until next cd)
 autoload -U add-zsh-hook
-add-zsh-hook precmd update_terminal_title
 add-zsh-hook chpwd update_terminal_title
