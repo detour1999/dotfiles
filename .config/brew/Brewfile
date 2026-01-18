@@ -14,7 +14,6 @@ brew "fd"
 brew "harfbuzz"
 brew "pango"
 brew "ffmpeg"
-brew "fish"
 brew "flyctl"
 brew "fzf"
 brew "gh"
@@ -62,7 +61,6 @@ cask "beeper"
 cask "caffeine"
 cask "chatgpt"
 cask "claude"
-cask "claude-code"
 cask "cursor"
 cask "db-browser-for-sqlite"
 cask "discord"
@@ -105,12 +103,8 @@ cask "zen"
 cask "zoom"
 mas "ColorSlurp", id: 1287239339
 mas "Drafts", id: 1435957248
-mas "GarageBand", id: 682658836
-mas "iMovie", id: 408981434
 mas "Keynote", id: 409183694
 mas "NextDNS", id: 1464122853
-mas "Numbers", id: 409203825
-mas "Pages", id: 409201541
 mas "Tailscale", id: 1475387142
 mas "TestFlight", id: 899247664
 mas "Windows App", id: 1295203466
@@ -121,6 +115,5 @@ vscode "mechatroner.rainbow-csv"
 vscode "ms-python.debugpy"
 vscode "ms-python.python"
 vscode "ms-python.vscode-pylance"
-vscode "ms-python.vscode-python-envs"
 vscode "ms-vscode-remote.remote-containers"
 cargo "matrix-bridge"
