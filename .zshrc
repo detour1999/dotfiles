@@ -158,3 +158,4 @@ ulimit -n 10240
 
 # Quick connect to work machine via mosh
 alias mini='mosh --server=/opt/homebrew/bin/mosh-server dylanr@100.124.196.92'
+export PATH="/opt/homebrew/opt/node@22/bin:$PATH"
