@@ -45,3 +45,4 @@ keybind = shift+enter=text:\n
 
 shell-integration-features = ssh-terminfo
 shell-integration-features = ssh-env
+shell-integration-features = no-title
