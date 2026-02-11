@@ -34,7 +34,8 @@
     "landing-page-design@2389-research-marketplace": true,
     "swift-lsp@claude-plugins-official": true,
     "rust-analyzer-lsp@claude-plugins-official": true,
-    "binary-re@2389-research-marketplace": true
+    "binary-re@2389-research-marketplace": true,
+    "qbp@2389-research-marketplace": true
   },
   "promptSuggestionEnabled": false,
   "mcpServers": {
