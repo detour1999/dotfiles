@@ -38,6 +38,7 @@
     "qbp@2389-research-marketplace": true
   },
   "promptSuggestionEnabled": false,
+  "skipDangerousModePermissionPrompt": true,
   "mcpServers": {
     "demo-mcp": {
       "type": "url",
@@ -46,5 +47,6 @@
   },
   "feedbackSurveyState": {
     "lastShownTime": 1753982508427
-  }
+  },
+  "effortLevel": "medium"
 }
