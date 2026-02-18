@@ -30,7 +30,9 @@
     "ceo-personal-os@2389-research-marketplace": true,
     "worldview-synthesis@2389-research-marketplace": true
   },
+  "skipDangerousModePermissionPrompt": true,
   "feedbackSurveyState": {
     "lastShownTime": 1753982508427
-  }
+  },
+  "effortLevel": "medium"
 }
