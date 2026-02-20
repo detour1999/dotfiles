@@ -73,16 +73,38 @@ function get_mode_marker() {
   bash ~/.config/claude/helpers/get-emoji/run.sh
 }
 
-# Update terminal title with work/fun indicator
-function update_terminal_title() {
-  local mode_marker=$(get_mode_marker)
-  # Export for use by other tools (like Claude Code hooks)
-  export TERMINAL_TITLE_EMOJI="$mode_marker"
-  # Set terminal title (works in most terminal emulators)
-  print -Pn "\e]0;${mode_marker} %~\a"
+# Get host shortcode (μ for mini, δ for MBP, etc.)
+function get_host_shortcode() {
+  case "$(hostname -s)" in
+    mini*|Mini*) echo "μ" ;;
+    Dylan-2389-MBP*) echo "δ" ;;
+    *) echo "$(hostname -s | cut -c1)" ;;  # fallback: first letter
+  esac
 }
 
-# Hook to update title before each prompt and on directory change
+# Update terminal title with location and work/fun indicator
+function update_terminal_title() {
+  local mode_marker=$(get_mode_marker)
+  local host_code=$(get_host_shortcode)
+  local location_indicator
+
+  # ↗ for remote (SSH/mosh), ⌂ for local
+  if [[ -n $SSH_CONNECTION || -n $SSH_TTY ]]; then
+    location_indicator="↗"
+  else
+    location_indicator="⌂"
+  fi
+
+  # Export for use by other tools (like Claude Code hooks)
+  export TERMINAL_TITLE_EMOJI="$mode_marker"
+  export TERMINAL_HOST_CODE="$host_code"
+  export TERMINAL_LOCATION="$location_indicator"
+
+  # Set terminal title: location+host then work indicator and path
+  print -Pn "\e]0;${location_indicator}${host_code} ${mode_marker} %~\a"
+}
+
+# Hook to update title on directory change only
+# (not precmd, so TUI apps can set their own titles until next cd)
 autoload -U add-zsh-hook
-add-zsh-hook precmd update_terminal_title
 add-zsh-hook chpwd update_terminal_title

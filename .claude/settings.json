@@ -28,7 +28,22 @@
     "test-kitchen@2389-research-marketplace": true,
     "experience-review@2389-research-marketplace": true,
     "ceo-personal-os@2389-research-marketplace": true,
-    "worldview-synthesis@2389-research-marketplace": true
+    "worldview-synthesis@2389-research-marketplace": true,
+    "better-dev@2389-research-marketplace": true,
+    "documentation-audit@2389-research-marketplace": true,
+    "landing-page-design@2389-research-marketplace": true,
+    "swift-lsp@claude-plugins-official": true,
+    "rust-analyzer-lsp@claude-plugins-official": true,
+    "binary-re@2389-research-marketplace": true,
+    "qbp@2389-research-marketplace": true
+  },
+  "promptSuggestionEnabled": false,
+  "skipDangerousModePermissionPrompt": true,
+  "mcpServers": {
+    "demo-mcp": {
+      "type": "url",
+      "url": "http://localhost:4200/mcp"
+    }
   },
   "skipDangerousModePermissionPrompt": true,
   "feedbackSurveyState": {
