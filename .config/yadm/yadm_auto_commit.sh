@@ -6,6 +6,12 @@ export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
 # Change to home directory
 cd "$HOME"
 
+# Random delay (0-30 minutes) to stagger across machines.
+# All machines share this script but will naturally spread out.
+JITTER=$((RANDOM % 1800))
+echo "⏳ Sleeping ${JITTER}s before auto-commit (jitter to avoid conflicts)..."
+sleep "$JITTER"
+
 # Check if there are any changes to tracked files
 if yadm diff --quiet && yadm diff --cached --quiet; then
   echo "No changes to commit"
