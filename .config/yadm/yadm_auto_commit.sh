@@ -32,6 +32,38 @@ Co-Authored-By: Claude <noreply@anthropic.com>
 EOF
 )"
 
+# Pull remote changes before pushing to avoid diverge from other machines.
+# Use merge (not rebase) and auto-resolve binary plist conflicts by accepting
+# the remote version — the next auto-commit will recapture local state anyway.
+yadm fetch origin
+if ! yadm diff --quiet origin/main..HEAD -- '*.plist' 2>/dev/null; then
+  # There are plist differences — set up merge to prefer remote for binaries
+  echo "⚠️  Remote has diverged, merging..."
+fi
+
+if ! yadm merge origin/main --no-ff --no-edit 2>/dev/null; then
+  # If merge conflicts, accept remote for all binary plists and keep ours for text
+  CONFLICTED=$(yadm diff --name-only --diff-filter=U 2>/dev/null)
+  if [ -n "$CONFLICTED" ]; then
+    echo "$CONFLICTED" | while read -r file; do
+      case "$file" in
+        *.plist)
+          yadm checkout --theirs "$file" 2>/dev/null
+          yadm add "$file"
+          echo "  Resolved binary conflict: $file (accepted remote)"
+          ;;
+        *)
+          # For text files, try accepting both sides (ours wins on conflict)
+          yadm checkout --ours "$file" 2>/dev/null
+          yadm add "$file"
+          echo "  Resolved text conflict: $file (kept local)"
+          ;;
+      esac
+    done
+    yadm commit --no-edit 2>/dev/null || true
+  fi
+fi
+
 # Push to remote
 yadm push
 
