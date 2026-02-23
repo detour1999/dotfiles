@@ -46,7 +46,7 @@ function work-mini --description "mosh into mini (tailscale) and run utm"
     set_color normal
     echo
 
-    mosh --server=/opt/homebrew/bin/mosh-server dylanr@$host -- fish -lc 'utm'
+    mosh --server=/opt/homebrew/bin/mosh-server dylanr@$host -- /opt/homebrew/bin/fish -lc 'utm'
 
     # Disconnect banner
     set -l bye_phrases 'P E A C E   O U T' 'G G' 'T O U C H   G R A S S' 'L A T E R   N E R D' 'A I G H T   I M M A   H E A D   O U T' 'S E S H   O V E R' 'C L O C K E D   O U T' 'B Y E   F E L I C I A' 'G O N E   F I S H I N' 'C T R L + D   E N E R G Y'

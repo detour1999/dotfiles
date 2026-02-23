@@ -2,6 +2,7 @@
 # ABOUTME: Sets up PATH, environment variables, and initializes mise + atuin.
 
 # --- PATH ---
+fish_add_path /opt/homebrew/bin
 fish_add_path ~/.config/bin
 fish_add_path ~/.local/bin
 fish_add_path ~/go/bin
@@ -17,5 +18,9 @@ set -gx GPG_TTY (tty)
 ulimit -n 10240
 
 # --- Tool initialization ---
-mise activate fish | source
-atuin init fish | source
+if command -q mise
+    mise activate fish | source
+end
+if command -q atuin
+    atuin init fish | source
+end
