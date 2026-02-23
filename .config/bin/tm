@@ -1,0 +1,20 @@
+#!/bin/bash
+# ABOUTME: Tmux session manager that creates or attaches to named sessions.
+# ABOUTME: Uses machine-specific emoji as default session name.
+
+set -euo pipefail
+
+# Assign a default emoji based on hostname
+case "$(hostname -s)" in
+    2389-mini|mini-dylan) default_name="🖥️" ;;
+    2389-mbp|*MacBook*)   default_name="💻" ;;
+    *)                    default_name="✨" ;;
+esac
+
+session_name="${1:-$default_name}"
+
+if tmux has-session -t "=$session_name" 2>/dev/null; then
+    exec tmux attach-session -t "=$session_name"
+else
+    exec tmux new-session -s "$session_name"
+fi
