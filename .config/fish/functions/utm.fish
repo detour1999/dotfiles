@@ -2,6 +2,6 @@
 # ABOUTME: Runs unlock.sh first, then passes arguments to tm.
 
 function utm --description 'Run unlock.sh then tm'
-    unlock.sh
-    and tm $argv
+    unlock.sh; or echo "Keychain unlock skipped"
+    tm $argv
 end
