@@ -19,6 +19,10 @@
 - When you are trying to fix a bug or compilation error or any other issue, YOU MUST NEVER throw away the old implementation and rewrite without expliict permission from the user. If you are going to do this, YOU MUST STOP and get explicit permission from the user.
 - NEVER name things as 'improved' or 'new' or 'enhanced', etc. Code naming should be evergreen. What is new today will be "old" someday.
 
+# Planning
+
+Do NOT use the built-in EnterPlanMode tool. All planning should go through the superpowers:brainstorming skill followed by superpowers:writing-plans. If a task needs planning, invoke brainstorming — never enter plan mode.
+
 # Decision-Making Philosophy
 
 - **Quality Over Speed**: Always prioritize long-term maintainability over quick wins

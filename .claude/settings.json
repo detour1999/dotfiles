@@ -30,7 +30,11 @@
     "scenario-testing@2389-research-marketplace": true,
     "terminal-title@2389-research-marketplace": true,
     "test-kitchen@2389-research-marketplace": true,
-    "xtool@2389-research-marketplace": true
+    "xtool@2389-research-marketplace": true,
+    "git-repo-prep@2389-research-marketplace": true,
+    "deliberation@2389-research-marketplace": true,
+    "gtm-partner@2389-research-marketplace": true,
+    "product-launcher@2389-research-marketplace": true
   },
   "promptSuggestionEnabled": false,
   "skipDangerousModePermissionPrompt": true,
@@ -40,9 +44,7 @@
       "url": "http://localhost:4200/mcp"
     }
   },
-  "skipDangerousModePermissionPrompt": true,
   "feedbackSurveyState": {
     "lastShownTime": 1753982508427
-  },
-  "effortLevel": "medium"
+  }
 }
