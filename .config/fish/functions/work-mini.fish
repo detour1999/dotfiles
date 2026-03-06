@@ -1,10 +1,30 @@
-# ABOUTME: Mosh into the mini dev server via Tailscale and run utm.
-# ABOUTME: Usage: work-mini [host] (defaults to 2389-mini)
+# ABOUTME: Mosh into the mini dev server and optionally join a tmux session.
+# ABOUTME: Usage: work-mini [--host HOST] [--session SESSION | SESSION]
 
-function work-mini --description "mosh into mini (tailscale) and run utm"
+function work-mini --description "mosh into mini and run utm"
+    # Parse --host and --session flags; remaining positional arg is session
     set -l host 2389-mini
-    if test (count $argv) -ge 1
-        set host $argv[1]
+    set -l session
+    set -l positional
+
+    set -l i 1
+    while test $i -le (count $argv)
+        switch $argv[$i]
+            case --host
+                set i (math $i + 1)
+                set host $argv[$i]
+            case --session
+                set i (math $i + 1)
+                set session $argv[$i]
+            case '*'
+                set -a positional $argv[$i]
+        end
+        set i (math $i + 1)
+    end
+
+    # Positional arg is session if --session wasn't used
+    if test -z "$session"; and test (count $positional) -ge 1
+        set session $positional[1]
     end
 
     # Phrases and matching emojis for random selection
@@ -46,7 +66,11 @@ function work-mini --description "mosh into mini (tailscale) and run utm"
     set_color normal
     echo
 
-    mosh --server=/opt/homebrew/bin/mosh-server dylanr@$host -- /opt/homebrew/bin/fish -lc 'utm'
+    if test -n "$session"
+        mosh --server=/opt/homebrew/bin/mosh-server dylanr@$host -- /opt/homebrew/bin/fish -lc "utm $session"
+    else
+        mosh --server=/opt/homebrew/bin/mosh-server dylanr@$host -- /opt/homebrew/bin/fish -lc 'utm'
+    end
 
     # Disconnect banner
     set -l bye_phrases 'P E A C E   O U T' 'G G' 'T O U C H   G R A S S' 'L A T E R   N E R D' 'A I G H T   I M M A   H E A D   O U T' 'S E S H   O V E R' 'C L O C K E D   O U T' 'B Y E   F E L I C I A' 'G O N E   F I S H I N' 'C T R L + D   E N E R G Y'
