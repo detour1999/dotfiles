@@ -21,7 +21,7 @@
 
 # Planning
 
-Do NOT use the built-in EnterPlanMode tool. All planning should go through the superpowers:brainstorming skill followed by superpowers:writing-plans. If a task needs planning, invoke brainstorming — never enter plan mode.
+NEVER use the built-in EnterPlanMode tool. This is a HARD RULE with no exceptions. If you are about to call EnterPlanMode, STOP. We have skills and other tools that handle planning — never enter the built-in plan mode.
 
 # Decision-Making Philosophy
 

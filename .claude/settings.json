@@ -34,7 +34,16 @@
     "git-repo-prep@2389-research-marketplace": true,
     "deliberation@2389-research-marketplace": true,
     "gtm-partner@2389-research-marketplace": true,
-    "product-launcher@2389-research-marketplace": true
+    "product-launcher@2389-research-marketplace": true,
+    "cc-review@cc-review-dev": true
+  },
+  "extraKnownMarketplaces": {
+    "cc-review-dev": {
+      "source": {
+        "source": "directory",
+        "path": "/Users/dylanr/work/2389/cc-review"
+      }
+    }
   },
   "promptSuggestionEnabled": false,
   "skipDangerousModePermissionPrompt": true,
