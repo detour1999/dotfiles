@@ -23,11 +23,12 @@ brew "git"
 brew "git-filter-repo"
 brew "gnupg"
 brew "go"
+brew "librsvg"
+brew "graphviz"
 brew "hugo"
 brew "jpeg"
 brew "jq"
 brew "libgit2"
-brew "librsvg"
 brew "llm"
 brew "make"
 brew "mas"
@@ -105,10 +106,8 @@ cask "whatsapp"
 cask "zed"
 cask "zen"
 cask "zoom"
-mas "ColorSlurp", id: 1287239339
 mas "Drafts", id: 1435957248
 mas "Keynote", id: 409183694
-mas "NextDNS", id: 1464122853
 mas "Tailscale", id: 1475387142
 mas "TestFlight", id: 899247664
 mas "Windows App", id: 1295203466
