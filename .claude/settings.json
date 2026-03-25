@@ -25,7 +25,8 @@
     "remote-system-maintenance@2389-research-marketplace": true,
     "scenario-testing@2389-research-marketplace": true,
     "sysadmin@2389-research-marketplace": true,
-    "terminal-title@2389-research-marketplace": true
+    "terminal-title@2389-research-marketplace": true,
+    "review-squad@2389-research-marketplace": true
   },
   "extraKnownMarketplaces": {
     "2389-research-marketplace": {
