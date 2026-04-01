@@ -18,21 +18,31 @@
     "swift-lsp@claude-plugins-official": true,
     "rust-analyzer-lsp@claude-plugins-official": true,
     "better-dev@2389-research-marketplace": true,
+    "binary-re@2389-research-marketplace": true,
     "building-multiagent-systems@2389-research-marketplace": true,
+    "ceo-personal-os@2389-research-marketplace": true,
     "css-development@2389-research-marketplace": true,
+    "documentation-audit@2389-research-marketplace": true,
     "firebase-development@2389-research-marketplace": true,
     "fresh-eyes-review@2389-research-marketplace": true,
-    "remote-system-maintenance@2389-research-marketplace": true,
+    "landing-page-design@2389-research-marketplace": true,
+    "qbp@2389-research-marketplace": true,
     "scenario-testing@2389-research-marketplace": true,
-    "sysadmin@2389-research-marketplace": true,
     "terminal-title@2389-research-marketplace": true,
+    "test-kitchen@2389-research-marketplace": true,
+    "xtool@2389-research-marketplace": true,
+    "git-repo-prep@2389-research-marketplace": true,
+    "deliberation@2389-research-marketplace": true,
+    "gtm-partner@2389-research-marketplace": true,
+    "product-launcher@2389-research-marketplace": true,
+    "cc-review@cc-review-dev": true,
     "review-squad@2389-research-marketplace": true
   },
   "extraKnownMarketplaces": {
-    "2389-research-marketplace": {
+    "cc-review-dev": {
       "source": {
-        "source": "github",
-        "repo": "2389-research/claude-plugins"
+        "source": "directory",
+        "path": "/Users/dylanr/work/2389/cc-review"
       }
     }
   },
