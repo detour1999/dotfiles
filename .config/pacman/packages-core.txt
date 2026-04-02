@@ -1,0 +1,49 @@
+# Core packages for all Linux machines (headless + GUI)
+# Installed via: sudo pacman -S --needed $(grep -v '^#' packages-core.txt | tr '\n' ' ')
+
+# Shell & terminal
+fish
+tmux
+atuin
+
+# Core CLI tools
+curl
+wget
+jq
+ripgrep
+fd
+fzf
+git
+git-filter-repo
+github-cli
+gnupg
+openssh
+mosh
+ncdu
+nmap
+htop
+glow
+micro
+
+# Build essentials
+base-devel
+cmake
+
+# Containers
+docker
+docker-compose
+docker-buildx
+
+# Networking
+tailscale
+
+# Cloud
+aws-cli
+
+# Media
+ffmpeg
+
+# Misc
+graphviz
+hugo
+poppler

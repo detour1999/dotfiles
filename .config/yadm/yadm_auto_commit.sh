@@ -1,7 +1,11 @@
 #!/bin/bash
 
-# Set up PATH for launchd
-export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
+# Set up PATH for scheduled task runners (launchd on macOS, systemd on Linux)
+if [[ "$(uname)" == "Darwin" ]]; then
+    export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
+else
+    export PATH="$HOME/.local/bin:/usr/local/bin:/usr/bin:$PATH"
+fi
 
 # Change to home directory
 cd "$HOME"

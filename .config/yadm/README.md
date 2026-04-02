@@ -1,76 +1,144 @@
-# Dotfiles Setup with yadm
+# Dotfiles
 
-This repository manages dotfiles using [yadm](https://yadm.io/) (Yet Another Dotfiles Manager).
+Cross-platform dotfiles managed with [yadm](https://yadm.io/). Supports macOS, Arch Linux, and Ubuntu/Debian (GUI + headless).
 
-## Setting Up a New Mac
+## New Machine Setup
 
-### 1. Install Homebrew and yadm
+### macOS
 
 ```bash
-# Install Homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-# Add brew to PATH (Apple Silicon)
 eval "$(/opt/homebrew/bin/brew shellenv)"
-
-# Install yadm
 brew install yadm
-```
-
-### 2. Clone the dotfiles repository
-
-```bash
 yadm clone https://github.com/detour1999/dotfiles.git
-```
-
-This pulls down all tracked dotfiles and automatically triggers the bootstrap script.
-
-### 3. Run bootstrap manually (if needed)
-
-```bash
-# Make bootstrap executable (sometimes needed after fresh clone)
-chmod +x ~/.config/yadm/bootstrap
-
+yadm decrypt
 yadm bootstrap
 ```
 
+### Arch Linux
+
+```bash
+sudo pacman -S yadm
+yadm clone https://github.com/detour1999/dotfiles.git
+yadm decrypt
+yadm bootstrap
+```
+
+### Ubuntu / Debian (Proxmox containers, etc.)
+
+```bash
+sudo apt update && sudo apt install -y yadm
+yadm clone https://github.com/detour1999/dotfiles.git
+yadm decrypt
+yadm bootstrap
+```
+
+That's it. Three steps after yadm is installed:
+
+1. **clone** — pulls down all dotfiles (uses HTTPS, no keys needed)
+2. **decrypt** — unlocks SSH keys and secrets (enter your GPG passphrase)
+3. **bootstrap** — installs packages, dev tools, sets fish as default shell
+
+Bootstrap is non-interactive and idempotent. Safe to re-run any time.
+
 ## What Bootstrap Does
 
-The bootstrap script (`~/.config/yadm/bootstrap`) automates the following:
+```
+bootstrap
+├── Detect OS (macOS / Linux), distro (arch), GUI vs headless
+├── Fall back to HTTPS if SSH keys aren't working yet
+├── OS-specific packages
+│   ├── macOS: brew bundle, mas, launchd, macOS defaults, casks
+│   └── Linux: pacman, paru (AUR), systemd services, fish as default shell
+├── Cross-platform tools
+│   ├── mise install (node, go, rust, python, deno, java, uv, yarn, ruff, claude)
+│   ├── TPM (tmux plugin manager)
+│   ├── VSCode extensions
+│   └── gh CLI aliases
+└── Restore SSH git rewrite if keys are working
+```
 
-1. **Homebrew Setup** - Installs Homebrew if not present
-2. **Mac App Store** - Installs `mas` and prompts for App Store sign-in
-3. **Brewfile** - Runs `brew bundle` from `~/.config/brew/Brewfile`
-4. **Launchd Services** - Sets up scheduled tasks via `launchd_manager.sh`
-5. **VSCode Extensions** - Installs configured extensions
-6. **macOS Defaults** - Applies saved system preferences
-7. **GitHub Apps** - Installs apps from GitHub releases (e.g., Sky.app)
-8. **Oh-My-Zsh** - Installs the Zsh framework
-9. **Encrypted Files** - Optionally decrypts sensitive files and sets up SSH
-10. **GitHub CLI** - Imports `gh` aliases
+## How Packages Are Managed
 
-## Helper Scripts
+| What | Where | Manager |
+|------|-------|---------|
+| Dev runtimes (node, go, rust, python, java, etc.) | `~/.config/mise/config.toml` | mise |
+| macOS system tools + GUI apps | `~/.config/brew/Brewfile` | brew |
+| Arch core packages | `~/.config/pacman/packages-core.txt` | pacman |
+| Arch GUI packages | `~/.config/pacman/packages-gui.txt` | pacman |
+| Arch AUR packages | `~/.config/pacman/packages-aur.txt` | paru |
+| Arch AUR GUI packages | `~/.config/pacman/packages-aur-gui.txt` | paru |
+| Ubuntu/Debian core packages | `~/.config/apt/packages-core.txt` | apt |
 
-| Script | Purpose |
-|--------|---------|
-| `bootstrap` | Main setup script for new machines |
-| `launchd_manager.sh` | Manages launchd services |
-| `macos_defaults_dump.sh` | Exports current macOS preferences |
-| `macos_defaults_load.sh` | Applies saved macOS preferences |
-| `update_brewfile.sh` | Updates Brewfile with current packages |
-| `yadm_auto_commit.sh` | Auto-commits dotfile changes |
-| `yadm_post_decrypt.sh` | Post-decrypt setup for SSH keys |
-| `github_app_installer.sh` | Installs apps from GitHub releases |
+Dev runtimes are **only** in mise, not in brew or pacman. System tools are **only** in brew/pacman, not in mise.
+
+## Adding Things
+
+```bash
+# Add a dev runtime
+# Edit ~/.config/mise/config.toml, then:
+mise install
+
+# Add a brew package (macOS)
+# Edit ~/.config/brew/Brewfile, then:
+brew bundle --file=~/.config/brew/Brewfile
+
+# Add a pacman package (Arch)
+# Edit the appropriate ~/.config/pacman/packages-*.txt, then:
+sudo pacman -S --needed <package>
+
+# Add an AUR package (Arch)
+# Edit the appropriate ~/.config/pacman/packages-aur*.txt, then:
+paru -S <package>
+
+# Add an apt package (Ubuntu/Debian)
+# Edit ~/.config/apt/packages-core.txt, then:
+sudo apt install <package>
+```
+
+## Shell Setup
+
+**fish** is the primary shell on all platforms. zsh and bash have minimal fallback configs (just mise + atuin + fzf) in case you end up in them.
+
+| File | Purpose |
+|------|---------|
+| `~/.config/fish/config.fish` | Primary shell config |
+| `~/.zshrc` | Minimal fallback |
+| `~/.bashrc` | Minimal fallback |
+
+## File Structure
+
+```
+~/.config/yadm/
+  bootstrap                    # orchestrator
+  bootstrap.d/
+    00-common.sh               # cross-platform (mise, TPM, VSCode, gh)
+    10-darwin.sh               # macOS (brew, mas, launchd, defaults)
+    20-linux.sh                # Arch Linux (pacman, paru, systemd)
+  encrypt                      # list of files to encrypt
+  yadm_post_decrypt.sh         # SSH key setup after decrypt
+  yadm_auto_commit.sh          # auto-commit dotfile changes (scheduled)
+  launchd_manager.sh           # macOS scheduled tasks
+  macos_defaults_dump.sh       # export macOS preferences
+  macos_defaults_load.sh       # apply macOS preferences
+  github_app_installer.sh      # install apps from GitHub releases (macOS)
+  update_brewfile.sh           # sync Brewfile with installed packages
+```
 
 ## Encrypted Files
 
-Sensitive files are encrypted with `yadm encrypt`. The list of encrypted files is in `~/.config/yadm/encrypt`.
+SSH keys and secrets are encrypted with GPG. Managed by `yadm encrypt` / `yadm decrypt`. The list of encrypted files is in `~/.config/yadm/encrypt`.
 
-To decrypt after cloning:
+## GUI vs Headless (Linux)
+
+Bootstrap auto-detects GUI by checking `$DISPLAY`, `$WAYLAND_DISPLAY`, and `$XDG_SESSION_TYPE`. GUI packages (ghostty, zed, discord, fonts, etc.) are only installed on desktops.
+
+To force GUI mode on a headless-detected machine (e.g., SSH into a desktop):
 ```bash
-yadm decrypt
+touch ~/.config/yadm/flags/has-gui
+yadm bootstrap
 ```
 
 ## Logs
 
-Bootstrap logs are written to `~/.yadm_bootstrap.log`.
+`~/.yadm_bootstrap.log`

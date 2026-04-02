@@ -1,0 +1,39 @@
+# Core packages for Ubuntu/Debian servers
+# Installed via: sudo apt install -y $(grep -v '^#' packages-core.txt | tr '\n' ' ')
+
+# Shell & terminal
+fish
+tmux
+
+# Core CLI tools
+curl
+wget
+jq
+ripgrep
+fd-find
+fzf
+git
+gnupg
+openssh-client
+mosh
+ncdu
+nmap
+htop
+micro
+
+# Build essentials
+build-essential
+cmake
+
+# Containers
+docker.io
+docker-compose-v2
+docker-buildx-plugin
+
+# Media
+ffmpeg
+
+# Misc
+graphviz
+hugo
+poppler-utils

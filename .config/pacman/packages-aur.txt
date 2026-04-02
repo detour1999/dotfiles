@@ -1,0 +1,9 @@
+# AUR packages for all Linux machines
+# Installed via: paru -S --needed $(grep -v '^#' packages-aur.txt | tr '\n' ' ')
+
+# CLI tools
+repomix
+ollama
+nextdns
+flyctl
+supabase-bin
