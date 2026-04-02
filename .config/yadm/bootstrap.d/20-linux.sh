@@ -7,17 +7,21 @@ echo "=== Linux Setup ==="
 install_from_list() {
     local file="$1"
     local cmd="$2"
-    if [[ -f "$file" ]]; then
-        local packages
-        packages=$(grep -v '^\s*#' "$file" | grep -v '^\s*$' | tr '\n' ' ')
-        if [[ -n "$packages" ]]; then
-            echo "Installing packages from $(basename "$file")..."
-            eval "$cmd" $packages || {
-                echo "Warning: Some packages from $(basename "$file") failed to install."
-            }
-        fi
-    else
+    if [[ ! -f "$file" ]]; then
         echo "Warning: Package list not found: $file"
+        return
+    fi
+
+    echo "Installing packages from $(basename "$file")..."
+    local failed=()
+    while IFS= read -r pkg; do
+        [[ -z "$pkg" || "$pkg" =~ ^[[:space:]]*# ]] && continue
+        pkg=$(echo "$pkg" | xargs)  # trim whitespace
+        eval "$cmd" "$pkg" 2>&1 || failed+=("$pkg")
+    done < "$file"
+
+    if [[ ${#failed[@]} -gt 0 ]]; then
+        echo "Warning: Failed to install: ${failed[*]}"
     fi
 }
 
@@ -28,6 +32,10 @@ install_from_list() {
 setup_arch() {
     echo "Setting up Arch Linux..."
     PACMAN_DIR="$HOME/.config/pacman"
+
+    # Refresh package database
+    echo "Updating package database..."
+    sudo pacman -Sy
 
     # Ensure base-devel is installed (needed for AUR)
     if ! pacman -Qg base-devel &>/dev/null; then

@@ -7,6 +7,3 @@ zoom
 
 # Media
 plexamp-appimage
-
-# Fonts
-ttf-consolas-for-powerline

@@ -13,9 +13,6 @@ ghostty-terminfo
 # Browser
 chromium
 
-# Editors
-zed
-
 # Desktop apps (official repos)
 discord
 obsidian
