@@ -1,26 +1,12 @@
 # AUR GUI packages for Linux desktops
 # Only installed when YADM_HAS_GUI=true
 
-# Editors
-visual-studio-code-bin
-cursor-bin
-
 # Communication
 slack-desktop
 zoom
 
-# Productivity
-notion-app-electron
-
 # Media
-spotify
 plexamp-appimage
-
-# AI/LLM
-lm-studio
 
 # Fonts
 ttf-consolas-for-powerline
-
-# 3D printing
-orcaslicer-bin

@@ -10,19 +10,18 @@ ghostty
 ghostty-shell-integration
 ghostty-terminfo
 
+# Browser
+chromium
+
 # Editors
 zed
 
 # Desktop apps (official repos)
 discord
 obsidian
-postman
 
 # Database tools
 sqlitebrowser
 
 # Fonts
 otf-font-awesome
-
-# 3D printing / CAD
-openscad

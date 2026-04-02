@@ -44,6 +44,5 @@ aws-cli
 ffmpeg
 
 # Misc
-graphviz
 hugo
 poppler

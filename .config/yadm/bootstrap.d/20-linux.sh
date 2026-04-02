@@ -51,7 +51,7 @@ setup_arch() {
 
     # AUR packages
     if command -v paru &>/dev/null; then
-        install_from_list "$PACMAN_DIR/packages-aur.txt" "paru -S --needed --noconfirm"
+        install_from_list "$PACMAN_DIR/packages-aur.txt" "paru -S --needed --noconfirm --skipreview"
     fi
 
     # GUI packages
@@ -60,7 +60,7 @@ setup_arch() {
         install_from_list "$PACMAN_DIR/packages-gui.txt" "sudo pacman -S --needed --noconfirm"
 
         if command -v paru &>/dev/null; then
-            install_from_list "$PACMAN_DIR/packages-aur-gui.txt" "paru -S --needed --noconfirm"
+            install_from_list "$PACMAN_DIR/packages-aur-gui.txt" "paru -S --needed --noconfirm --skipreview"
         fi
     fi
 }
