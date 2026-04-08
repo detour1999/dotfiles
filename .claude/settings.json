@@ -36,7 +36,8 @@
     "gtm-partner@2389-research-marketplace": true,
     "product-launcher@2389-research-marketplace": true,
     "cc-review@cc-review-dev": true,
-    "review-squad@2389-research-marketplace": true
+    "review-squad@2389-research-marketplace": true,
+    "prbuddy@2389-research-marketplace": true
   },
   "extraKnownMarketplaces": {
     "cc-review-dev": {
