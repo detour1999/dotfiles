@@ -1,0 +1,5 @@
+# Optional AUR packages — not installed by default
+# Install manually: paru -S --needed $(grep -v '^#' packages-aur-optional.txt | tr '\n' ' ')
+
+# 3D printing
+orcaslicer-bin

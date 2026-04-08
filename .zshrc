@@ -162,3 +162,4 @@ alias mini='mosh --server=/opt/homebrew/bin/mosh-server dylanr@100.124.196.92'
 # Go binaries
 export PATH="$HOME/go/bin:$PATH"
 export PATH="/opt/homebrew/opt/node@22/bin:$PATH"
+export PATH=$PATH:$HOME/.maestro/bin

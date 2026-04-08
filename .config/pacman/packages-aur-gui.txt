@@ -1,0 +1,9 @@
+# AUR GUI packages for Linux desktops
+# Only installed when YADM_HAS_GUI=true
+
+# Communication
+slack-desktop
+zoom
+
+# Media
+plexamp-appimage

@@ -1,0 +1,8 @@
+# Optional packages — not installed by default
+# Install manually: sudo pacman -S --needed $(grep -v '^#' packages-optional.txt | tr '\n' ' ')
+
+# 3D printing / CAD
+openscad
+
+# Diagramming
+graphviz

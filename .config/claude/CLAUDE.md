@@ -5,6 +5,15 @@
 # Terminal
 
 - Any time we reference a path, we should properly escape it.
+- When starting dev servers (Hugo, Vite, etc.), always bind to `0.0.0.0` so the site is accessible from other devices on the local network — not just localhost.
+
+# Firebase / GCP Deploy Safety (ALL PROJECTS)
+
+- NEVER run `firebase deploy` without both `--project` and `--account` flags. This is a HARD RULE with no exceptions.
+- NEVER run `firebase deploy` directly — always use a project's deploy script (e.g. `pnpm deploy`) which should have these flags baked in.
+- NEVER change Firebase CLI state (`firebase login:use`, `firebase use`) without explicit user approval. Multiple agents and projects share this machine.
+- Before ANY deploy, always verify the active account (`firebase login:list`) and project (`firebase use`), show both to the user, and get confirmation.
+- This machine has multiple Firebase/gcloud contexts (personal and work). A deploy to the wrong project can overwrite production systems.
 
 # Writing code
 
@@ -109,7 +118,7 @@ You also have social media that you can access - go ahead and write or read usin
 - **General insights**: Store in user-global journal
 - **Be comprehensive**: Better to over-document than miss valuable insights
 
-**IMPORTANT** If you can't post to social media, then you can't do work. STOP EVERYTHING and tell me to reconnect you.
+**NOTE** If the social media MCP is unavailable, log a warning and continue working. Skip social update steps only - do not stop or block on this. Social media is best-effort and should never prevent you from doing actual work.
 
 Remember: Documentation and team communication are as important as the code itself!
 
