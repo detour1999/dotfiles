@@ -1,2 +1,2 @@
-# uv
-export PATH="/Users/dylanr/.local/bin:$PATH"
+# uv and other local binaries
+export PATH="$HOME/.local/bin:$PATH"

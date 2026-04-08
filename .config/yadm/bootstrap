@@ -1,7 +1,14 @@
 #!/bin/bash
 
-# Set up error handling
-set -e  # Exit immediately if a command exits with a non-zero status
+# YADM Bootstrap — idempotent, non-interactive
+#
+# Prerequisites (run these first):
+#   yadm clone <repo>
+#   yadm decrypt
+#
+# Then run: yadm bootstrap
+# Safe to re-run at any time — each step skips if already done.
+
 set -u  # Treat unset variables as an error
 
 # Setup logging
@@ -10,235 +17,115 @@ mkdir -p "$(dirname "$log_file")"
 exec > >(tee -a "$log_file") 2>&1
 echo "=== YADM Bootstrap started at $(date) ==="
 
-# Check if the operating system is macOS
-if [[ "$(uname)" == "Darwin" ]]; then
-  echo "Running on macOS..."
+# ==============================================================================
+# DETECT ENVIRONMENT
+# ==============================================================================
 
-  # Check if Homebrew is installed, and install it if not
-  if ! command -v brew &> /dev/null; then
-    echo "Homebrew not found, installing..."
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+export YADM_OS="$(uname)"
+echo "OS: $YADM_OS"
 
-    # Add Homebrew to PATH based on architecture
-    if [[ "$(uname -m)" == "arm64" ]]; then
-      echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> "$HOME/.zprofile"
-      eval "$(/opt/homebrew/bin/brew shellenv)"
-    else
-      echo 'eval "$(/usr/local/bin/brew shellenv)"' >> "$HOME/.zprofile"
-      eval "$(/usr/local/bin/brew shellenv)"
+export YADM_DISTRO="unknown"
+if [[ "$YADM_OS" == "Linux" ]] && [[ -f /etc/os-release ]]; then
+    YADM_DISTRO=$(grep ^ID= /etc/os-release | cut -d= -f2 | tr -d '"')
+    echo "Distro: $YADM_DISTRO"
+fi
+
+detect_gui() {
+    if [[ "$YADM_OS" == "Darwin" ]]; then
+        echo "true"
+        return
     fi
-  fi
-
-  # Ensure mas is installed for Mac App Store apps
-  if ! command -v mas &>/dev/null; then
-    echo "Installing mas for Mac App Store apps..."
-    brew install mas
-  fi
-
-  # Check if logged into Mac App Store and prompt to sign in if not
-  if ! mas account &>/dev/null; then
-    echo "⚠️ You are not signed into the Mac App Store."
-    echo "Mac App Store apps in your Brewfile cannot be installed without signing in."
-    echo ""
-
-    # Ask user if they want to sign in
-    read -p "Would you like to sign in to the Mac App Store now? (y/n) " -n 1 -r
-    echo ""
-
-    if [[ $REPLY =~ ^[Yy]$ ]]; then
-      # First try the preferred modern method
-      echo "Launching the Mac App Store app. Please sign in through the app..."
-      open -a "App Store"
-
-      # Wait for user confirmation
-      read -p "Press Enter once you've signed in through the Mac App Store app..." -r
-
-      # Check if sign-in was successful
-      if mas account &>/dev/null; then
-        echo "✅ Successfully signed in to the Mac App Store as $(mas account)."
-      else
-        echo "⚠️ Still not signed in to the Mac App Store. Trying alternative method..."
-
-        # Fallback to the CLI sign-in method (deprecated but might work on older macOS versions)
-        read -p "Enter your Apple ID email: " apple_id
-        mas signin "$apple_id" || {
-          echo "❌ Failed to sign in using the CLI method."
-          echo "Please sign in manually through the Mac App Store app before installing Mac App Store apps."
-        }
-      fi
-    else
-      echo "⚠️ Skipping Mac App Store sign-in. Mac App Store apps will not be installed."
+    if [[ -f "$HOME/.config/yadm/flags/has-gui" ]]; then
+        echo "true"
+        return
     fi
-  else
-    echo "✅ Already signed in to the Mac App Store as $(mas account)."
-  fi
-
-  # Create Brewfile directory if it doesn't exist
-  mkdir -p "$HOME/.config/brew"
-
-  # Install packages from Brewfile if it exists
-  if [ -f "$HOME/.config/brew/Brewfile" ]; then
-    echo "Installing Brewfile packages..."
-
-    # Check if signed into Mac App Store
-    if mas account &>/dev/null; then
-      # Signed in - install everything including MAS apps
-      brew bundle --file="$HOME/.config/brew/Brewfile" || {
-        echo "Warning: Some Brewfile packages failed to install. Check the log for details."
-      }
-    else
-      # Not signed in - skip MAS apps
-      echo "⚠️ Not signed into Mac App Store. Installing only brew/cask/vscode packages (skipping mas)..."
-      brew bundle --file="$HOME/.config/brew/Brewfile" --no-mas || {
-        echo "Warning: Some Brewfile packages failed to install. Check the log for details."
-      }
-      echo "ℹ️ To install Mac App Store apps later, sign in and run: brew bundle --file=$HOME/.config/brew/Brewfile"
+    if [[ -n "${DISPLAY:-}" ]] || [[ -n "${WAYLAND_DISPLAY:-}" ]]; then
+        echo "true"
+        return
     fi
-  else
-    echo "Brewfile not found! Creating a new one..."
-    brew bundle dump --file="$HOME/.config/brew/Brewfile" --all
-  fi
-
-  # Set up launchd services using the launchd manager script
-  if [ -f "$HOME/.config/yadm/launchd_manager.sh" ]; then
-    echo "Setting up launchd services..."
-    chmod +x "$HOME/.config/yadm/launchd_manager.sh"
-    "$HOME/.config/yadm/launchd_manager.sh" setup-all
-  else
-    echo "Warning: launchd manager script not found. Scheduled tasks will not be set up."
-  fi
-
-  # Install VSCode extensions if VSCode is installed
-  if command -v code &>/dev/null; then
-    echo "Installing VSCode extensions..."
-    extensions=(
-      "github.copilot"
-      "github.copilot-chat"
-      "mechatroner.rainbow-csv"
-      "ms-python.debugpy"
-      "ms-python.python"
-      "ms-python.vscode-pylance"
-      "ms-vscode-remote.remote-containers"
-    )
-
-    for ext in "${extensions[@]}"; do
-      code --install-extension "$ext" || echo "Failed to install $ext"
-    done
-  fi
-
-  # Apply saved macOS defaults
-  MACOS_DEFAULTS_LOAD="$HOME/.config/yadm/macos_defaults_load.sh"
-  MACOS_DEFAULTS_DUMP="$HOME/.config/yadm/macos_defaults_dump.sh"
-
-  if [ -f "$MACOS_DEFAULTS_LOAD" ]; then
-    echo "Applying saved macOS defaults..."
-    chmod +x "$MACOS_DEFAULTS_LOAD"
-    bash "$MACOS_DEFAULTS_LOAD"
-  else
-    echo "No saved macOS defaults load script found. Will dump current settings."
-    if [ -f "$MACOS_DEFAULTS_DUMP" ]; then
-      echo "Dumping current macOS defaults for future use..."
-      chmod +x "$MACOS_DEFAULTS_DUMP"
-      bash "$MACOS_DEFAULTS_DUMP"
-    else
-      echo "Warning: macOS defaults dump script not found."
+    if [[ -n "${XDG_SESSION_TYPE:-}" && "${XDG_SESSION_TYPE}" != "tty" ]]; then
+        echo "true"
+        return
     fi
-  fi
-
-  # Install GitHub-hosted applications
-  echo "Installing GitHub-hosted applications..."
-
-  # Source the installer script if it exists
-  INSTALLER_SCRIPT="$HOME/.config/yadm/github_app_installer.sh"
-  if [ -f "$INSTALLER_SCRIPT" ]; then
-    chmod +x "$INSTALLER_SCRIPT"
-    source "$INSTALLER_SCRIPT"
-
-    # Install Sky.app (Bluesky client)
-    install_github_app "jcsalterego/Sky.app" "Sky"
-
-    # Add any other GitHub apps you want to install
-    # Examples:
-    # install_github_app "sindresorhus/Gifski" "Gifski"
-    # install_github_app "exelban/stats" "Stats"
-
-    echo "GitHub app installation completed."
-  else
-    echo "Warning: GitHub app installer script not found at $INSTALLER_SCRIPT"
-    echo "Skipping GitHub app installation."
-  fi
-
-  # Install Oh-My-Zsh if not already installed
-  # Check if oh-my-zsh.sh exists (not just the directory)
-  if [ ! -f "$HOME/.oh-my-zsh/oh-my-zsh.sh" ]; then
-    echo "Installing Oh-My-Zsh..."
-
-    # Remove empty directory if it exists
-    if [ -d "$HOME/.oh-my-zsh" ] && [ -z "$(ls -A "$HOME/.oh-my-zsh")" ]; then
-      echo "Removing empty Oh-My-Zsh directory..."
-      rm -rf "$HOME/.oh-my-zsh"
+    if command -v Xorg &>/dev/null || command -v sway &>/dev/null || command -v gnome-session &>/dev/null; then
+        echo "true"
+        return
     fi
+    echo "false"
+}
 
-    RUNZSH=no KEEP_ZSHRC=yes sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+export YADM_HAS_GUI="$(detect_gui)"
+echo "GUI: $YADM_HAS_GUI"
 
-    if [ -f "$HOME/.oh-my-zsh/oh-my-zsh.sh" ]; then
-      echo "✅ Oh-My-Zsh installed successfully"
-    else
-      echo "⚠️ Oh-My-Zsh installation may have failed. Please check manually."
-    fi
-  else
-    echo "✅ Oh-My-Zsh already installed"
-  fi
+# ==============================================================================
+# CHECK PREREQUISITES
+# ==============================================================================
 
-  # Install TPM (Tmux Plugin Manager) if not already installed
-  if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
-    echo "Installing Tmux Plugin Manager (TPM)..."
-    git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
-
-    if [ -d "$HOME/.tmux/plugins/tpm" ]; then
-      echo "✅ TPM installed successfully"
-      echo "ℹ️ Run 'prefix + I' inside tmux to install plugins"
-    else
-      echo "⚠️ TPM installation may have failed. Please check manually."
-    fi
-  else
-    echo "✅ TPM already installed"
-  fi
-
+# Warn if SSH keys aren't set up (but don't block — HTTPS still works)
+if [[ -f "$HOME/.ssh/id_rsa" ]]; then
+    echo "SSH key: found"
 else
-  echo "Not running on macOS. Skipping macOS-specific configuration."
+    echo ""
+    echo "WARNING: No SSH key found at ~/.ssh/id_rsa"
+    echo "Some git clones may fail. Run 'yadm decrypt' first if you haven't."
+    echo "Continuing anyway..."
+    echo ""
 fi
 
-# Set up your preferred shell
-preferred_shell="/usr/local/bin/zsh"
-if [[ "$(uname)" == "Darwin" ]] && [[ -f "$preferred_shell" ]] && [[ "$SHELL" != "$preferred_shell" ]]; then
-  echo "Setting up $preferred_shell as default shell..."
-  chsh -s "$preferred_shell"
+# Ensure HTTPS works even if gitconfig rewrites to SSH
+# (temporarily disable the rewrite if SSH isn't working)
+YADM_RESTORED_HTTPS=false
+if git config --global url.git@github.com:.insteadOf &>/dev/null; then
+    if ! ssh -T git@github.com -o BatchMode=yes -o ConnectTimeout=5 2>&1 | grep -q "successfully authenticated"; then
+        echo "SSH to GitHub not working — temporarily using HTTPS for git clones"
+        git config --global --unset url.git@github.com:.insteadOf
+        YADM_RESTORED_HTTPS=true
+    fi
 fi
 
-# Check if user wants to set up SSH for YADM
+# ==============================================================================
+# STEP 1: OS packages
+# ==============================================================================
+
+BOOTSTRAP_DIR="$HOME/.config/yadm/bootstrap.d"
+
+if [[ "$YADM_OS" == "Darwin" ]]; then
+    if [[ -f "$BOOTSTRAP_DIR/10-darwin.sh" ]]; then
+        echo ""
+        source "$BOOTSTRAP_DIR/10-darwin.sh"
+    fi
+elif [[ "$YADM_OS" == "Linux" ]]; then
+    if [[ -f "$BOOTSTRAP_DIR/20-linux.sh" ]]; then
+        echo ""
+        source "$BOOTSTRAP_DIR/20-linux.sh"
+    fi
+fi
+
+# ==============================================================================
+# STEP 2: Cross-platform tools (mise, TPM, etc.)
+# ==============================================================================
+
+if [[ -f "$BOOTSTRAP_DIR/00-common.sh" ]]; then
+    echo ""
+    source "$BOOTSTRAP_DIR/00-common.sh"
+fi
+
+# ==============================================================================
+# RESTORE SSH GIT REWRITE
+# ==============================================================================
+
+if [[ "$YADM_RESTORED_HTTPS" == "true" ]]; then
+    # Check again — maybe SSH keys were already there and it was a transient issue
+    if ssh -T git@github.com -o BatchMode=yes -o ConnectTimeout=5 2>&1 | grep -q "successfully authenticated"; then
+        echo "Restoring SSH git rewrite..."
+        git config --global url.git@github.com:.insteadOf https://github.com/
+    else
+        echo ""
+        echo "NOTE: Git is still using HTTPS (SSH not working)."
+        echo "After running 'yadm decrypt', restore SSH with:"
+        echo "  git config --global url.git@github.com:.insteadOf https://github.com/"
+    fi
+fi
+
 echo ""
-echo "=== YADM SSH Setup ==="
-read -p "Would you like to decrypt YADM files and set up SSH? (y/n) " -n 1 -r
-echo ""
-
-if [[ $REPLY =~ ^[Yy]$ ]]; then
-  # Ensure the script exists
-  if [ -f "$HOME/.config/yadm/yadm_post_decrypt.sh" ]; then
-    echo "Running YADM post-decrypt setup..."
-    chmod +x "$HOME/.config/yadm/yadm_post_decrypt.sh"
-    "$HOME/.config/yadm/yadm_post_decrypt.sh"
-  else
-    echo "Error: Post-decrypt script not found at $HOME/.config/yadm/yadm_post_decrypt.sh"
-    echo "Please make sure the script exists before running this step."
-  fi
-fi
-
-# Set up GitHub CLI aliases
-if command -v gh >/dev/null && [ -f "$HOME/.config/gh/aliases.yaml" ]; then
-  echo "🔁 Importing GitHub CLI aliases..."
-  gh alias import < "$HOME/.config/gh/aliases.yaml"
-fi
-
-
 echo "=== YADM Bootstrap completed at $(date) ==="

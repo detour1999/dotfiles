@@ -4,13 +4,14 @@ idiomatic_version_file_enable_tools = ["python"]
 
 [tools]
 usage = "latest"
-node = "20.15.1"
+node = "22"
 go = "latest"
 rust = "latest"
 deno = "latest"
+java = "latest"
+uv = "latest"
 # bun = "latest"
 # ruby = "latest"
-# java = "latest"
 # kotlin = "latest"
 # zig = "latest"
 # elixir = "latest"
@@ -22,6 +23,7 @@ deno = "latest"
 yarn = "latest"
 ruff = "latest"
 python = "3.12"
+claude = "latest"
 
 [tasks."llm:generate_bundle"]
 description = 'Generate LLM bundle output file using repomix'
@@ -52,7 +54,16 @@ depends = ["llm:generate_bundle"]
 description = 'Copy generated LLM bundle from output.txt to system clipboard for external use'
 run = """
 #!/usr/bin/env bash
-cat output.txt | pbcopy
+if command -v pbcopy &>/dev/null; then
+    cat output.txt | pbcopy
+elif command -v wl-copy &>/dev/null; then
+    cat output.txt | wl-copy
+elif command -v xclip &>/dev/null; then
+    cat output.txt | xclip -selection clipboard
+else
+    echo "No clipboard command found (pbcopy/wl-copy/xclip)"
+    exit 1
+fi
 echo "Pushed output.txt to the copy buffer"
 """
 

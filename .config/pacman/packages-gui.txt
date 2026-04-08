@@ -1,0 +1,24 @@
+# GUI packages for Linux desktops
+# Only installed when YADM_HAS_GUI=true
+
+# Clipboard support
+xclip
+wl-clipboard
+
+# Terminal emulator
+ghostty
+ghostty-shell-integration
+ghostty-terminfo
+
+# Browser
+chromium
+
+# Desktop apps (official repos)
+discord
+obsidian
+
+# Database tools
+sqlitebrowser
+
+# Fonts
+otf-font-awesome
