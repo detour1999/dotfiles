@@ -26,7 +26,6 @@
     "firebase-development@2389-research-marketplace": true,
     "fresh-eyes-review@2389-research-marketplace": true,
     "landing-page-design@2389-research-marketplace": true,
-    "qbp@2389-research-marketplace": true,
     "scenario-testing@2389-research-marketplace": true,
     "terminal-title@2389-research-marketplace": true,
     "test-kitchen@2389-research-marketplace": true,
@@ -35,14 +34,17 @@
     "deliberation@2389-research-marketplace": true,
     "gtm-partner@2389-research-marketplace": true,
     "product-launcher@2389-research-marketplace": true,
-    "cc-review@cc-review-dev": true,
-    "review-squad@2389-research-marketplace": true
+    "hindsight@hindsight-dev": true,
+    "review-squad@2389-research-marketplace": true,
+    "simmer@2389-research-marketplace": true,
+    "slack-mcp@2389-research-marketplace": true,
+    "frontend-design@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
-    "cc-review-dev": {
+    "hindsight-dev": {
       "source": {
         "source": "directory",
-        "path": "/Users/dylanr/work/2389/cc-review"
+        "path": "/Users/dylanr/work/2389/hindsight"
       }
     }
   },
