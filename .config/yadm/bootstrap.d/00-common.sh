@@ -3,6 +3,11 @@
 
 echo "=== Cross-Platform Setup ==="
 
+# --- yadm gitignore wiring ---
+# yadm doesn't read your global git core.excludesFile, so wire it explicitly.
+# Without this, patterns in ~/.config/git/.gitignore_global don't apply to yadm.
+yadm gitconfig core.excludesFile "$HOME/.config/git/.gitignore_global"
+
 # --- mise ---
 if ! command -v mise &>/dev/null; then
     echo "Installing mise..."

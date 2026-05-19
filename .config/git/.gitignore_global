@@ -56,3 +56,9 @@ env/
 Thumbs.db
 ehthumbs.db
 Desktop.ini
+
+# Dotfiles (yadm) — auto-rotating secrets that should never get committed
+.ssh/known_hosts
+.ssh/known_hosts.old
+.config/gh/hosts.yml
+.config/github-copilot/
