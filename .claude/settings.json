@@ -35,18 +35,11 @@
     "deliberation@2389-research-marketplace": true,
     "gtm-partner@2389-research-marketplace": true,
     "product-launcher@2389-research-marketplace": true,
-    "cc-review@cc-review-dev": true,
     "review-squad@2389-research-marketplace": true,
-    "prbuddy@2389-research-marketplace": true
+    "prbuddy@2389-research-marketplace": true,
+    "jam@2389-research-marketplace": true
   },
-  "extraKnownMarketplaces": {
-    "cc-review-dev": {
-      "source": {
-        "source": "directory",
-        "path": "/Users/dylanr/work/2389/cc-review"
-      }
-    }
-  },
+  "extraKnownMarketplaces": {},
   "promptSuggestionEnabled": false,
   "skipDangerousModePermissionPrompt": true,
   "mcpServers": {
