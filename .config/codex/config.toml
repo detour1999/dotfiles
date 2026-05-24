@@ -1,0 +1,9 @@
+model = "gpt-5.4"
+[projects."/Users/dylanr"]
+trust_level = "trusted"
+
+[projects."/Users/dylanr/work/2389/2389.ai"]
+trust_level = "trusted"
+
+[notice.model_migrations]
+"gpt-5.3-codex" = "gpt-5.4"
