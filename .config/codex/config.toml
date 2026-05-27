@@ -1,9 +1,21 @@
-model = "gpt-5.4"
+model = "gpt-5.5"
+model_reasoning_effort = "xhigh"
 [projects."/Users/dylanr"]
 trust_level = "trusted"
 
 [projects."/Users/dylanr/work/2389/2389.ai"]
 trust_level = "trusted"
 
+[notice]
+hide_rate_limit_model_nudge = true
+
 [notice.model_migrations]
 "gpt-5.3-codex" = "gpt-5.4"
+
+[tui]
+terminal_title = []
+status_line = ["current-dir", "project-name", "git-branch", "pull-request-number", "model-with-reasoning"]
+status_line_use_colors = true
+
+[tui.model_availability_nux]
+"gpt-5.5" = 2

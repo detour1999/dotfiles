@@ -58,16 +58,35 @@ fi
 # --- Brewfile ---
 mkdir -p "$HOME/.config/brew"
 
+# Wrap brew bundle with a wall-clock timeout when `timeout` is available
+# (coreutils, installed via the Brewfile itself). A single hung cask post-install
+# can otherwise wedge the bootstrap indefinitely — happened once with codex 0.132.0.
+# On a brand-new mac without coreutils yet, the first run runs unwrapped; any
+# re-run will be protected.
+brew_bundle_timeout=1800  # 30 minutes
+run_brew_bundle() {
+    if command -v timeout &>/dev/null; then
+        timeout --foreground --kill-after=30 "$brew_bundle_timeout" "$@"
+        local rc=$?
+        if [ "$rc" -eq 124 ] || [ "$rc" -eq 137 ]; then
+            echo "Warning: brew bundle hit the ${brew_bundle_timeout}s timeout. A package may be hung."
+        fi
+        return $rc
+    else
+        "$@"
+    fi
+}
+
 if [ -f "$HOME/.config/brew/Brewfile" ]; then
     echo "Installing Brewfile packages..."
 
     if mas account &>/dev/null; then
-        brew bundle --file="$HOME/.config/brew/Brewfile" || {
+        run_brew_bundle brew bundle --file="$HOME/.config/brew/Brewfile" || {
             echo "Warning: Some Brewfile packages failed to install. Check the log for details."
         }
     else
         echo "Not signed into Mac App Store. Installing only brew/cask/vscode packages (skipping mas)..."
-        brew bundle --file="$HOME/.config/brew/Brewfile" --no-mas || {
+        HOMEBREW_BUNDLE_MAS_SKIP=1 run_brew_bundle brew bundle --file="$HOME/.config/brew/Brewfile" || {
             echo "Warning: Some Brewfile packages failed to install. Check the log for details."
         }
         echo "To install Mac App Store apps later, sign in and run: brew bundle --file=$HOME/.config/brew/Brewfile"

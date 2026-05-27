@@ -5,7 +5,7 @@ idiomatic_version_file_enable_tools = ["python"]
 [tools]
 usage = "latest"
 node = "22"
-go = "latest"
+go = "1.26.3"
 rust = "latest"
 deno = "latest"
 java = "latest"
@@ -24,6 +24,7 @@ yarn = "latest"
 ruff = "latest"
 python = "3.12"
 claude = "latest"
+"npm:@openai/codex" = "latest"
 
 [tasks."llm:generate_bundle"]
 description = 'Generate LLM bundle output file using repomix'
