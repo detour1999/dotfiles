@@ -16,7 +16,9 @@
       "mcp__socialmedia__create_post",
       "mcp__socialmedia__login",
       "Skill(terminal-title)",
-      "Bash(pacman -Q)"
+      "Bash(pacman -Q)",
+      "Bash(cp /Users/dylanr/.claude/projects/-Users-dylanr/49200a5f-59ac-4a44-b21a-591a72da9e1a/tool-results/webfetch-1779208196665-hc82pm.bin /tmp/screenshot.png)",
+      "Read(//tmp/**)"
     ],
     "deny": []
   }

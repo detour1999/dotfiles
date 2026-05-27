@@ -65,4 +65,20 @@ if command -v gh &>/dev/null && [ -f "$HOME/.config/gh/aliases.yaml" ]; then
     gh alias import < "$HOME/.config/gh/aliases.yaml"
 fi
 
+# --- codex config symlink ---
+# Codex doesn't honor XDG; we keep the source of truth at
+# ~/.config/codex/config.toml and symlink it into ~/.codex/
+if [ -f "$HOME/.config/codex/config.toml" ]; then
+    mkdir -p "$HOME/.codex"
+    codex_target="$HOME/.codex/config.toml"
+    codex_source="$HOME/.config/codex/config.toml"
+    if [ ! -L "$codex_target" ] || [ "$(readlink "$codex_target")" != "$codex_source" ]; then
+        if [ -e "$codex_target" ] && [ ! -L "$codex_target" ]; then
+            mv "$codex_target" "$codex_target.bak.$(date +%s)"
+        fi
+        ln -sfn "$codex_source" "$codex_target"
+        echo "Linked $codex_target -> $codex_source"
+    fi
+fi
+
 echo "=== Cross-Platform Setup Complete ==="
