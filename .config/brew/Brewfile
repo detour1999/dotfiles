@@ -1,117 +1,70 @@
 tap "2389-research/tap"
-tap "openclaw/tap"
-tap "steipete/tap"
-tap "supabase/tap"
-tap "xtool-org/tap"
-tap "yakitrak/yakitrak"
-# Open-source, cross-platform JavaScript runtime environment
-brew "node"
-# Browser automation CLI for AI agents
-brew "agent-browser"
+# Library and utilities for processing GIFs
+brew "giflib"
+# Library for manipulating PNG images
+brew "libpng"
 # Improved shell history for zsh, bash, fish and nushell
 brew "atuin"
 # Automatic configure script builder
 brew "autoconf"
-# Official Amazon AWS command-line interface
-brew "awscli"
-# Parser generator
-brew "bison"
-# Library for manipulating PNG images
-brew "libpng"
 # Core application library for C
 brew "glib"
 # Vector graphics library with cross-device output support
 brew "cairo"
 # Cross-platform make
 brew "cmake"
-# Dependency manager for Cocoa projects
-brew "cocoapods"
 # Container runtimes on MacOS (and Linux) with minimal setup
 brew "colima"
-# Create and run Linux containers using lightweight virtual machines
-brew "container"
 # GNU File, Shell, and Text utilities
 brew "coreutils"
 # Get a file from an HTTP, HTTPS or FTP server
 brew "curl"
 # Pack, ship and run any application as a lightweight container
 brew "docker"
-# Docker CLI plugin for extended build capabilities with BuildKit
-brew "docker-buildx"
 # Isolated development environments using Docker
 brew "docker-compose"
 # Simple, fast and user-friendly alternative to find
 brew "fd"
+# OpenType text shaping engine
+brew "harfbuzz"
+# Framework for layout and rendering of i18n text
+brew "pango"
 # Play, record, convert, and stream select audio and video codecs
 brew "ffmpeg"
 # User-friendly command-line shell for UNIX-like operating systems
 brew "fish"
-# Ogg Bitstream Library
-brew "libogg"
-# Free lossless audio codec
-brew "flac"
-# Fast Lexical Analyzer, generates Scanners (tokenizers)
-brew "flex"
 # Command-line tools for fly.io services
 brew "flyctl"
 # Command-line fuzzy finder written in Go
 brew "fzf"
-# Library and utilities for processing GIFs
-brew "giflib"
-# Interact with Google Gemini AI models from the command-line
-brew "gemini-cli"
 # GitHub command-line tool
 brew "gh"
 # Distributed revision control system
 brew "git"
 # Quickly rewrite git repository history
 brew "git-filter-repo"
-# Render markdown on the CLI
-brew "glow"
 # GNU Privacy Guard (OpenPGP)
 brew "gnupg"
 # Open source programming language to build simple/reliable/efficient software
 brew "go"
-# Fast linters runner for Go
-brew "golangci-lint"
-# OpenType text shaping engine
-brew "harfbuzz"
-# Framework for layout and rendering of i18n text
-brew "pango"
 # Library to render SVG files using Cairo
 brew "librsvg"
 # Graph visualization software from AT&T and Bell Labs
 brew "graphviz"
 # Configurable static site generator
 brew "hugo"
-# CLI tool for searching and downloading app packages from the iOS App Store
-brew "ipatool"
 # Image manipulation library
 brew "jpeg"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
-# Image processing and image analysis library
-brew "leptonica"
-# Secure hashing function
-brew "libb2"
 # C library of Git core methods that is re-entrant and linkable
 brew "libgit2"
-# Vorbis general audio compression codec
-brew "libvorbis"
-# MP3 player for Linux and UNIX
-brew "mpg123"
-# C library for files containing sampled sound
-brew "libsndfile"
-# Universal Disk Format reader
-brew "libudfread"
 # Access large language models from the command-line
 brew "llm"
 # Utility for directing compilation
 brew "make"
 # Mac App Store command-line interface
 brew "mas"
-# Modern and intuitive terminal-based text editor
-brew "micro"
 # Polyglot runtime manager (asdf rust clone)
 brew "mise"
 # Remote terminal application
@@ -122,20 +75,16 @@ brew "ncdu"
 brew "nextdns"
 # Port scanning utility for large networks
 brew "nmap"
+# Open-source, cross-platform JavaScript runtime environment
+brew "node"
 # Low-code programming for event-driven applications
 brew "node-red"
-# Open-source, cross-platform JavaScript runtime environment
-brew "node@22"
 # Manage multiple Node.js versions
 brew "nvm"
 # Create, run, and share large language models (LLMs)
 brew "ollama"
 # Development kit for the Java programming language
 brew "openjdk"
-# Development kit for the Java programming language
-brew "openjdk@17"
-# Swiss-army knife of markup format conversion
-brew "pandoc"
 # Package compiler and linker metadata toolkit
 brew "pkgconf"
 # PDF rendering library (based on the xpdf-3.0 code base)
@@ -146,32 +95,18 @@ brew "repomix"
 brew "ripgrep"
 # Safe, concurrent, practical language
 brew "rust"
-# Multi-modal AI tool to extract and summarize content
-brew "summarize"
 # Easiest, most secure way to use WireGuard and 2FA
 brew "tailscale"
 # Terminal multiplexer
 brew "tmux"
-# Validating, recursive, caching DNS resolver
-brew "unbound"
 # Extremely fast Python package installer and resolver, written in Rust
 brew "uv"
 # Internet file retriever
 brew "wget"
-# Port of OpenAI's Whisper model in C/C++
-brew "whisper-cpp"
-# Generate your Xcode project from a spec file and your folder structure
-brew "xcodegen"
-# Best command-line tool to install and switch between multiple versions of Xcode
-brew "xcodes"
 # Yet Another Dotfiles Manager
 brew "yadm"
 # JavaScript package manager
 brew "yarn"
-# Process YAML, JSON, XML, CSV and properties documents from the CLI
-brew "yq"
-# Suite of barcodes-reading tools
-brew "zbar"
 # UNIX shell (command interpreter)
 brew "zsh"
 # Fish-like fast/unobtrusive autosuggestions for zsh
@@ -184,8 +119,6 @@ cask "1password"
 cask "1password-cli"
 # Spreadsheet-database hybrid cloud collaboration
 cask "airtable"
-# Command-line tools for building and debugging Android apps
-cask "android-commandlinetools"
 # Android SDK component
 cask "android-platform-tools"
 # Allows connection to a computer remotely
@@ -200,8 +133,6 @@ cask "caffeine"
 cask "chatgpt"
 # Anthropic's official Claude AI desktop app
 cask "claude"
-# Terminal-based AI coding assistant
-cask "claude-code"
 # Write, edit, and chat about your code with AI
 cask "cursor"
 # Browser for SQLite databases
@@ -210,8 +141,6 @@ cask "db-browser-for-sqlite"
 cask "discord"
 # Disk usage utility
 cask "disk-inventory-x"
-# App to build and share containerised applications and microservices
-cask "docker-desktop"
 # Client for the Dropbox cloud storage service
 cask "dropbox"
 # Screen colour temperature controller
@@ -235,8 +164,6 @@ cask "lm-studio"
 cask "logi-options+"
 # Self-hosted controller built using the Flutter framework
 cask "lunasea"
-# Previewer for Markdown, MultiMarkdown and other text markup languages
-cask "marked-app"
 # Provides updates to various Microsoft products
 cask "microsoft-auto-update"
 # Meet, chat, call, and collaborate in just one place
@@ -279,8 +206,6 @@ cask "tiles"
 cask "visual-studio-code"
 # Native desktop client for WhatsApp
 cask "whatsapp"
-# Cross-platform Xcode replacement
-cask "xtool-org/tap/xtool"
 # Multiplayer code editor
 cask "zed"
 # Gecko based web browser
@@ -289,12 +214,9 @@ cask "zen"
 cask "zoom"
 mas "ColorSlurp", id: 1287239339
 mas "Drafts", id: 1435957248
-mas "GarageBand", id: 682658836
-mas "iMovie", id: 408981434
 mas "Keynote", id: 409183694
 mas "NextDNS", id: 1464122853
-mas "Numbers", id: 409203825
-mas "Pages", id: 409201541
+mas "Tailscale", id: 1475387142
 mas "TestFlight", id: 899247664
 mas "Windows App", id: 1295203466
 mas "Xcode", id: 497799835
@@ -304,18 +226,10 @@ vscode "mechatroner.rainbow-csv"
 vscode "ms-python.debugpy"
 vscode "ms-python.python"
 vscode "ms-python.vscode-pylance"
-vscode "ms-python.vscode-python-envs"
 vscode "ms-vscode-remote.remote-containers"
-go "github.com/mvanhorn/cli-printing-press/v4/cmd/cli-printing-press"
-cargo "cargo-llvm-cov"
-cargo "cargo-ndk"
-cargo "cargo-watch"
-cargo "jeff"
-cargo "jeff-tui"
-cargo "uniffi-bindgen-cli"
-cargo "wasm-pack"
-uv "browser-use"
+cargo "matrix-bridge"
 uv "pre-commit"
-npm "@electron/asar"
-npm "js-beautify"
-npm "openclaw"
+uv "translator"
+npm "@anthropic-ai/claude-code"
+npm "postcss-cli"
+npm "postcss"
