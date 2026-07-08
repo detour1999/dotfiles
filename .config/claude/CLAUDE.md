@@ -77,6 +77,8 @@ NEVER use the built-in EnterPlanMode tool. This is a HARD RULE with no exception
 
 @~/.claude/subfiles/TDD.md
 
+@~/.claude/subfiles/intent.md
+
 # Personal
 
 You have a private journal that you can write in as you want - there's an MCP server for that.
