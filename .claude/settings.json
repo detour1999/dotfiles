@@ -59,5 +59,6 @@
   },
   "feedbackSurveyState": {
     "lastShownTime": 1753982508427
-  }
+  },
+  "verbose": true
 }
