@@ -6,7 +6,6 @@
       "Skill(2389:terminal-title)"
     ]
   },
-  "model": "claude-fable-5",
   "statusLine": {
     "type": "command",
     "command": "npx -y ccstatusline@latest",
@@ -39,13 +38,20 @@
     "review-squad@2389-research-marketplace": true,
     "prbuddy@2389-research-marketplace": true,
     "jam@2389-research-marketplace": true,
-    "intent@intent-local": true
+    "intent@intent-local": true,
+    "hindsight@hindsight-local": true
   },
   "extraKnownMarketplaces": {
     "intent-local": {
       "source": {
         "source": "directory",
         "path": "/Users/dylanr/work/2389/skills-dev/intent"
+      }
+    },
+    "hindsight-local": {
+      "source": {
+        "source": "directory",
+        "path": "/Users/dylanr/work/2389/hindsight"
       }
     }
   },
