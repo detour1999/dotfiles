@@ -1,4 +1,5 @@
 tap "2389-research/tap"
+tap "kenn-io/tap"
 tap "openclaw/tap"
 tap "steipete/tap"
 tap "supabase/tap"
@@ -178,10 +179,14 @@ brew "zsh"
 brew "zsh-autosuggestions"
 # Fish shell like syntax highlighting for zsh
 brew "zsh-syntax-highlighting"
+# Automatic code review daemon for git commits using AI agents
+brew "kenn-io/tap/roborev", trusted: true
 # Password manager that keeps all passwords secure behind one password
 cask "1password"
 # Command-line interface for 1Password
 cask "1password-cli"
+# Browse, search and analyse your past AI coding sessions
+cask "agentsview"
 # Spreadsheet-database hybrid cloud collaboration
 cask "airtable"
 # Command-line tools for building and debugging Android apps
