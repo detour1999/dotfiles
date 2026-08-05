@@ -57,6 +57,7 @@
   },
   "promptSuggestionEnabled": false,
   "skipDangerousModePermissionPrompt": true,
+  "verbose": true,
   "mcpServers": {
     "demo-mcp": {
       "type": "url",
@@ -66,5 +67,5 @@
   "feedbackSurveyState": {
     "lastShownTime": 1753982508427
   },
-  "verbose": true
+  "theme": "dark-daltonized"
 }
