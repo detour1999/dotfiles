@@ -26,6 +26,11 @@ python = "3.12"
 claude = "latest"
 "npm:@openai/codex" = "latest"
 "npm:firebase-tools" = "latest"
+# @netlify/serverless-functions-api carried provenance attestations for only 5
+# versions in a 4-day window in April 2023; the 104 versions since August 2023
+# have none. The no-downgrade policy anchors on that anomaly. Reviewed 2026-08-11:
+# expected repo, Netlify maintainer accounts, registry signatures present.
+"npm:netlify-cli" = { version = "latest", trust_policy_excludes = ["@netlify/serverless-functions-api@2.18.0"] }
 
 [tasks."llm:generate_bundle"]
 description = 'Generate LLM bundle output file using repomix'
