@@ -39,7 +39,9 @@
     "prbuddy@2389-research-marketplace": true,
     "jam@2389-research-marketplace": true,
     "intent@intent-local": true,
-    "hindsight@hindsight-local": true
+    "hindsight@hindsight-local": true,
+    "jam@jam-local": true,
+    "blog-writer@blog-writer-local": true
   },
   "extraKnownMarketplaces": {
     "intent-local": {
@@ -53,10 +55,23 @@
         "source": "directory",
         "path": "/Users/dylanr/work/2389/hindsight"
       }
+    },
+    "jam-local": {
+      "source": {
+        "source": "directory",
+        "path": "/Users/dylanr/work/2389/skills-dev/jam"
+      }
+    },
+    "blog-writer-local": {
+      "source": {
+        "source": "directory",
+        "path": "/Users/dylanr/work/2389/skills-dev/blog-writer/.worktrees/editor-front"
+      }
     }
   },
   "promptSuggestionEnabled": false,
   "skipDangerousModePermissionPrompt": true,
+  "theme": "dark-daltonized",
   "verbose": true,
   "mcpServers": {
     "demo-mcp": {
@@ -66,6 +81,5 @@
   },
   "feedbackSurveyState": {
     "lastShownTime": 1753982508427
-  },
-  "theme": "dark-daltonized"
+  }
 }
