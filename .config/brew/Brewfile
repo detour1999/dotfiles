@@ -1,6 +1,4 @@
 tap "2389-research/tap"
-# Library and utilities for processing GIFs
-brew "giflib"
 # Library for manipulating PNG images
 brew "libpng"
 # Improved shell history for zsh, bash, fish and nushell
@@ -20,15 +18,11 @@ brew "coreutils"
 # Get a file from an HTTP, HTTPS or FTP server
 brew "curl"
 # Pack, ship and run any application as a lightweight container
-brew "docker"
+brew "docker", link: false
 # Isolated development environments using Docker
 brew "docker-compose"
 # Simple, fast and user-friendly alternative to find
 brew "fd"
-# OpenType text shaping engine
-brew "harfbuzz"
-# Framework for layout and rendering of i18n text
-brew "pango"
 # Play, record, convert, and stream select audio and video codecs
 brew "ffmpeg"
 # User-friendly command-line shell for UNIX-like operating systems
@@ -37,6 +31,8 @@ brew "fish"
 brew "flyctl"
 # Command-line fuzzy finder written in Go
 brew "fzf"
+# Library and utilities for processing GIFs
+brew "giflib"
 # GitHub command-line tool
 brew "gh"
 # Distributed revision control system
@@ -47,6 +43,10 @@ brew "git-filter-repo"
 brew "gnupg"
 # Open source programming language to build simple/reliable/efficient software
 brew "go"
+# OpenType text shaping engine
+brew "harfbuzz"
+# Framework for layout and rendering of i18n text
+brew "pango"
 # Library to render SVG files using Cairo
 brew "librsvg"
 # Graph visualization software from AT&T and Bell Labs
