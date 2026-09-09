@@ -6,6 +6,15 @@ trust_level = "trusted"
 [projects."/Users/dylanr/work/2389/2389.ai"]
 trust_level = "trusted"
 
+[projects."/Users/dylanr/work/2389/skymall"]
+trust_level = "trusted"
+
+[projects."/Users/dylanr/work/2389/daybook"]
+trust_level = "trusted"
+
+[projects."/Users/dylanr/work/2389/harness"]
+trust_level = "trusted"
+
 [notice]
 hide_rate_limit_model_nudge = true
 
@@ -18,4 +27,4 @@ status_line = ["current-dir", "project-name", "git-branch", "pull-request-number
 status_line_use_colors = true
 
 [tui.model_availability_nux]
-"gpt-5.5" = 2
+"gpt-5.5" = 3
