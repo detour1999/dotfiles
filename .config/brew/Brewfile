@@ -113,6 +113,10 @@ brew "zsh"
 brew "zsh-autosuggestions"
 # Fish shell like syntax highlighting for zsh
 brew "zsh-syntax-highlighting"
+# A pipeline-aware workflow definition language
+brew "2389-research/tap/dippin-lang", trusted: true
+# Pipeline orchestration engine for multi-agent LLM workflows
+brew "2389-research/tap/tracker", trusted: true
 # Password manager that keeps all passwords secure behind one password
 cask "1password"
 # Command-line interface for 1Password
@@ -172,6 +176,8 @@ cask "microsoft-teams"
 cask "miniconda"
 # Cross-platform MQTT 5.0 Desktop Client
 cask "mqttx"
+# Local-first dictation and meeting transcription
+cask "muesli"
 # Free and open-source RSS reader
 cask "netnewswire"
 # Reverse proxy, secure introspectable tunnels to localhost
@@ -215,8 +221,6 @@ cask "zoom"
 mas "ColorSlurp", id: 1287239339
 mas "Drafts", id: 1435957248
 mas "Keynote", id: 361285480
-mas "Keynote", id: 409183694
-mas "NextDNS", id: 1464122853
 mas "Tailscale", id: 1475387142
 mas "TestFlight", id: 899247664
 mas "Windows App", id: 1295203466
@@ -229,6 +233,7 @@ vscode "ms-python.python"
 vscode "ms-python.vscode-pylance"
 vscode "ms-vscode-remote.remote-containers"
 cargo "matrix-bridge"
+cargo "tauri-cli"
 uv "pre-commit"
 uv "translator", source: "git+https://github.com/2389-research/translator"
 npm "@anthropic-ai/claude-code"
