@@ -35,14 +35,18 @@ brew "container"
 brew "coreutils"
 # Get a file from an HTTP, HTTPS or FTP server
 brew "curl"
+# Library and utilities for processing GIFs
+brew "giflib"
 # Pack, ship and run any application as a lightweight container
-brew "docker"
+brew "docker", link: false
 # Docker CLI plugin for extended build capabilities with BuildKit
 brew "docker-buildx"
 # Isolated development environments using Docker
 brew "docker-compose"
 # Simple, fast and user-friendly alternative to find
 brew "fd"
+# MP3 player for Linux and UNIX
+brew "mpg123"
 # Play, record, convert, and stream select audio and video codecs
 brew "ffmpeg"
 # User-friendly command-line shell for UNIX-like operating systems
@@ -57,8 +61,6 @@ brew "flex"
 brew "flyctl"
 # Command-line fuzzy finder written in Go
 brew "fzf"
-# Library and utilities for processing GIFs
-brew "giflib"
 # Interact with Google Gemini AI models from the command-line
 brew "gemini-cli"
 # GitHub command-line tool
@@ -99,8 +101,6 @@ brew "libb2"
 brew "libgit2"
 # Vorbis general audio compression codec
 brew "libvorbis"
-# MP3 player for Linux and UNIX
-brew "mpg123"
 # C library for files containing sampled sound
 brew "libsndfile"
 # Universal Disk Format reader
@@ -160,7 +160,7 @@ brew "uv"
 # Internet file retriever
 brew "wget"
 # Port of OpenAI's Whisper model in C/C++
-brew "whisper-cpp"
+brew "whisper.cpp"
 # Generate your Xcode project from a spec file and your folder structure
 brew "xcodegen"
 # Command-line tool to install and switch between multiple versions of Xcode
@@ -179,6 +179,10 @@ brew "zsh"
 brew "zsh-autosuggestions"
 # Fish shell like syntax highlighting for zsh
 brew "zsh-syntax-highlighting"
+# A pipeline-aware workflow definition language
+brew "2389-research/tap/dippin-lang", trusted: true
+# Pipeline orchestration engine for multi-agent LLM workflows
+brew "2389-research/tap/tracker", trusted: true
 # Automatic code review daemon for git commits using AI agents
 brew "kenn-io/tap/roborev", trusted: true
 # Password manager that keeps all passwords secure behind one password
