@@ -62,3 +62,13 @@ Desktop.ini
 .ssh/known_hosts.old
 .config/gh/hosts.yml
 .config/github-copilot/
+
+# Agent CLI state files: written by the agents themselves and may accumulate
+# credentials. The hook config in .gemini/settings.json is (re)installed by
+# ~/.config/yadm/bootstrap.d/05-agents.sh instead of being tracked.
+.gemini/settings.json
+.gemini/google_accounts.json
+.gemini/state.json
+.gemini/trustedFolders.json
+.codex/auth.json
+.claude/.credentials.json
