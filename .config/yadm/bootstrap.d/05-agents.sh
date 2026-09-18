@@ -55,9 +55,23 @@ for skill in "${SKILLS[@]}"; do
     link "$AGENTS_DIR/skills/$skill" "$HOME/.gemini/skills/$skill"
 done
 
-# Gemini stores hooks in its own format; migrate them from the Claude settings.
-if command -v gemini &>/dev/null && [ ! -f "$HOME/.gemini/hooks.json" ]; then
-    echo "  run 'gemini hooks migrate' to import the Claude hooks into Gemini"
+# --- Post-link reminders -------------------------------------------------------
+# Codex gates hooks twice: the features.hooks flag and a per-hook trust hash, both
+# stored in config.toml. Editing hooks.json changes the hash and forces a re-trust,
+# which only the interactive TUI can grant.
+if command -v codex &>/dev/null; then
+    if ! grep -q 'trusted_hash' "$HOME/.config/codex/config.toml" 2>/dev/null; then
+        echo "  codex: hooks are untrusted — run 'codex', then press 't' at the hook review prompt"
+    fi
+    if ! grep -qE '^hooks[[:space:]]*=[[:space:]]*true' "$HOME/.config/codex/config.toml" 2>/dev/null; then
+        echo "  codex: set 'hooks = true' under [features] in ~/.config/codex/config.toml"
+    fi
+fi
+
+# Gemini needs an auth method before it will run at all; its hook format differs
+# from Claude's (the event is BeforeTool) and `gemini hooks migrate` is unreliable.
+if command -v gemini &>/dev/null && ! grep -q 'selectedAuthType\|security' "$HOME/.gemini/settings.json" 2>/dev/null; then
+    echo "  gemini: not authenticated — run 'gemini' once and pick an auth method"
 fi
 
 echo "=== Agent Configuration Complete ==="

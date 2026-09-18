@@ -15,6 +15,7 @@ trust_level = "trusted"
 [projects."/Users/dylanr/work/2389/harness"]
 trust_level = "trusted"
 
+
 [notice]
 hide_rate_limit_model_nudge = true
 
@@ -28,3 +29,12 @@ status_line_use_colors = true
 
 [tui.model_availability_nux]
 "gpt-5.5" = 3
+gpt-6-astra = 1
+
+[features]
+hooks = true
+
+[hooks.state]
+
+[hooks.state."/Users/dylanr/.codex/hooks.json:pre_tool_use:0:0"]
+trusted_hash = "sha256:d3794ae4b94c6e4beadca52724a213620f111be2a014a9402ecd7831f17a5d46"
