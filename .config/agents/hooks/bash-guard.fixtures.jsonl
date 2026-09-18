@@ -1,0 +1,18 @@
+{"expect":"deny","label":"fb deploy, string form","tool_input":{"command":"firebase deploy --only hosting"}}
+{"expect":"deny","label":"fb deploy, .cmd field","tool_input":{"cmd":"firebase deploy"}}
+{"expect":"deny","label":"fb deploy, argv array","tool_input":{"command":["firebase","deploy","--project","x"]}}
+{"expect":"deny","label":"commit --no-verify, array","tool_input":{"command":["git","commit","--no-verify"]}}
+{"expect":"deny","label":"push --no-verify, .script field","tool_input":{"script":"git push --no-verify"}}
+{"expect":"deny","label":"commit -n, string","tool_input":{"command":"git commit -n -m x"}}
+{"expect":"ask","expect_noask":"deny","label":"fb use <target>","tool_input":{"command":"firebase use staging"}}
+{"expect":"ask","expect_noask":"deny","label":"fb login:use","tool_input":{"command":"firebase login:use dylan@2389.ai"}}
+{"expect":"ask","expect_noask":"deny","label":"gcloud set project","tool_input":{"command":["gcloud","config","set","project","p"]}}
+{"expect":"allow","label":"fb deploy fully scoped","tool_input":{"command":"firebase deploy --project car-parts --account dylan@2389.ai"}}
+{"expect":"allow","label":"pnpm deploy","tool_input":{"command":"pnpm deploy"}}
+{"expect":"allow","label":"ls, array form","tool_input":{"command":["ls","-la"]}}
+{"expect":"allow","label":"commit -m normal","tool_input":{"command":"git commit -m \"add notes\""}}
+{"expect":"allow","label":"commit --amend --no-edit","tool_input":{"command":"git commit --amend --no-edit"}}
+{"expect":"allow","label":"bare firebase use","tool_input":{"command":"firebase use"}}
+{"expect":"allow","label":"firebase login:list","tool_input":{"command":"firebase login:list"}}
+{"expect":"allow","label":"empty tool_input","tool_input":{}}
+{"expect":"allow","label":"empty object"}

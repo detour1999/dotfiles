@@ -1,0 +1,17 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "^(shell|local_shell)$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ~/.config/agents/hooks/bash-guard.sh --no-ask",
+            "timeout": 10,
+            "statusMessage": "Checking command safety..."
+          }
+        ]
+      }
+    ]
+  }
+}
