@@ -16,10 +16,14 @@ done
 
 # Field name varies by agent (Claude uses .command; others use .cmd/.script), and some send
 # the command as an argv array. Normalize all of those to one string.
-cmd=$(jq -r '
+payload=$(cat)
+cmd=$(printf '%s' "$payload" | jq -r '
   (.tool_input.command // .tool_input.cmd // .tool_input.script // "") as $c
   | if ($c | type) == "array" then ($c | join(" ")) else ($c | tostring) end
 ' 2>/dev/null || printf '')
+
+# Identifies which agent family is calling; see decide() for why it matters.
+event=$(printf '%s' "$payload" | jq -r '.hook_event_name // "PreToolUse"' 2>/dev/null || printf 'PreToolUse')
 [ -n "$cmd" ] || exit 0
 
 decide() {
@@ -31,8 +35,19 @@ decide() {
 
 (This agent cannot prompt from a hook, so the command is blocked. Confirm with the user, then re-run it once they approve.)"
   fi
-  jq -nc --arg d "$decision" --arg r "$reason" \
-    '{hookSpecificOutput:{hookEventName:"PreToolUse",permissionDecision:$d,permissionDecisionReason:$r}}'
+  # The two families disagree on where the verdict goes, and the payload says which
+  # one we're talking to: Gemini names the event BeforeTool and reads a top-level
+  # decision/reason pair, while Claude Code and Codex say PreToolUse and read
+  # hookSpecificOutput. Sending both at once is not an option — Claude's top-level
+  # decision accepts only "block", so a stray "deny" there voids the whole verdict.
+  if [ "$event" = "BeforeTool" ]; then
+    jq -nc --arg d "$decision" --arg r "$reason" \
+      '{decision:$d, reason:$r,
+        hookSpecificOutput:{hookEventName:"BeforeTool",permissionDecision:$d,permissionDecisionReason:$r}}'
+  else
+    jq -nc --arg d "$decision" --arg r "$reason" \
+      '{hookSpecificOutput:{hookEventName:"PreToolUse",permissionDecision:$d,permissionDecisionReason:$r}}'
+  fi
   exit 0
 }
 

@@ -68,10 +68,27 @@ if command -v codex &>/dev/null; then
     fi
 fi
 
-# Gemini needs an auth method before it will run at all; its hook format differs
-# from Claude's (the event is BeforeTool) and `gemini hooks migrate` is unreliable.
-if command -v gemini &>/dev/null && ! grep -q 'selectedAuthType\|security' "$HOME/.gemini/settings.json" 2>/dev/null; then
-    echo "  gemini: not authenticated — run 'gemini' once and pick an auth method"
+# Gemini keeps hooks inside settings.json, which it also writes auth state into, so
+# it can't be a symlink — merge the hook in instead. `gemini hooks migrate` reports
+# success without writing anything, so don't rely on it. Note the differences from
+# the Claude/Codex config: the event is BeforeTool, the tool is run_shell_command,
+# and timeout is in milliseconds rather than seconds.
+if command -v gemini &>/dev/null; then
+    gemini_settings="$HOME/.gemini/settings.json"
+    if [ ! -s "$gemini_settings" ]; then
+        echo "  gemini: not set up — run 'gemini' once and pick an auth method, then re-run bootstrap"
+    elif ! jq -e '.hooks.BeforeTool' "$gemini_settings" >/dev/null 2>&1; then
+        tmp=$(mktemp)
+        jq '.hooks.BeforeTool = [{
+              matcher: "run_shell_command",
+              hooks: [{
+                type: "command",
+                command: "bash ~/.config/agents/hooks/bash-guard.sh --no-ask",
+                timeout: 10000
+              }]
+            }]' "$gemini_settings" > "$tmp" && mv "$tmp" "$gemini_settings"
+        echo "  gemini: installed BeforeTool guard into settings.json"
+    fi
 fi
 
 echo "=== Agent Configuration Complete ==="
