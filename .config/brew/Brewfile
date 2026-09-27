@@ -30,7 +30,7 @@ brew "cocoapods"
 # Container runtimes on MacOS (and Linux) with minimal setup
 brew "colima"
 # Create and run Linux containers using lightweight virtual machines
-brew "container"
+brew "container", restart_service: :changed
 # GNU File, Shell, and Text utilities
 brew "coreutils"
 # Get a file from an HTTP, HTTPS or FTP server
