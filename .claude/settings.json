@@ -56,7 +56,8 @@
     "intent@intent-local": true,
     "hindsight@hindsight-local": true,
     "jam@jam-local": true,
-    "blog-writer@blog-writer-local": true
+    "blog-writer@blog-writer-local": true,
+    "arbor-taste@arbor-taste-local": true
   },
   "extraKnownMarketplaces": {
     "intent-local": {
@@ -81,6 +82,12 @@
       "source": {
         "source": "directory",
         "path": "/Users/dylanr/work/2389/skills-dev/blog-writer/.worktrees/editor-front"
+      }
+    },
+    "arbor-taste-local": {
+      "source": {
+        "source": "directory",
+        "path": "/Users/dylanr/work/2389/skills-dev/arbor-taste"
       }
     }
   },
