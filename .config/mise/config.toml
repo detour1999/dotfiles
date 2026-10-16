@@ -32,6 +32,7 @@ claude = "latest"
 # expected repo, Netlify maintainer accounts, registry signatures present.
 "npm:netlify-cli" = { version = "latest", trust_policy_excludes = ["@netlify/serverless-functions-api@2.18.0"] }
 codex = "latest"
+herdr = "latest"
 
 [tasks."llm:generate_bundle"]
 description = 'Generate LLM bundle output file using repomix'

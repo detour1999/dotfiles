@@ -55,6 +55,27 @@ for skill in "${SKILLS[@]}"; do
     link "$AGENTS_DIR/skills/$skill" "$HOME/.gemini/skills/$skill"
 done
 
+# --- herdr ---------------------------------------------------------------------
+# herdr's agent-state hook is a tracked file rather than an installer artifact, so a
+# fresh checkout has both halves: the script here and its SessionStart entry in
+# ~/.claude/settings.json. Don't run `herdr integration install claude` to repair it —
+# that writes an absolute $HOME path and appends a duplicate entry rather than
+# replacing the tilde-path one. Fix drift by hand, or install and re-tilde the path.
+if command -v herdr &>/dev/null; then
+    chmod +x "$HOME/.claude/hooks/herdr-agent-state.sh" 2>/dev/null || true
+
+    if ! herdr integration status 2>/dev/null | grep -q '^claude: current'; then
+        echo "  herdr: claude integration has drifted from the installed herdr version"
+        echo "         compare against 'herdr integration status' before reinstalling"
+    fi
+
+    # Completions are generated, not tracked, so they always match this herdr build.
+    if [ -d "$HOME/.config/fish" ]; then
+        mkdir -p "$HOME/.config/fish/completions"
+        herdr completion fish > "$HOME/.config/fish/completions/herdr.fish"
+    fi
+fi
+
 # --- Post-link reminders -------------------------------------------------------
 # Codex gates hooks twice: the features.hooks flag and a per-hook trust hash, both
 # stored in config.toml. Editing hooks.json changes the hash and forces a re-trust,
