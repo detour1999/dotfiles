@@ -1,0 +1,21 @@
+# ABOUTME: herdr configuration — terminal workspace manager for AI coding agents.
+# ABOUTME: Tuned for remote use: this machine is driven over SSH, so restarts must restore usefully.
+#
+# Full annotated defaults: `herdr --default-config`
+# Validate after editing:  `herdr config check`
+# Apply to a live server:  `herdr server reload-config`
+
+[theme]
+# Matches the Ghostty theme in ~/.config/ghostty/config (Dracula+).
+name = "dracula"
+
+[update]
+# mise owns this binary (herdr is in ~/.config/mise/config.toml), so `herdr update`
+# would fight it. Background version nags off; upgrade with `mise upgrade herdr`.
+version_check = false
+
+[experimental]
+# Replay recent pane screen history across full server restarts. Without this, a
+# server restart brings panes back as empty shells in the right directories — on a
+# machine reached over SSH, the scrollback is usually the part worth keeping.
+pane_history = true

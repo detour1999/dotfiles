@@ -1,11 +1,13 @@
-# ABOUTME: Mosh into the mini dev server and optionally join a tmux session.
-# ABOUTME: Usage: work-mini [--host HOST] [--session SESSION | SESSION]
+# ABOUTME: Mosh into the mini dev server and optionally join a tmux or herdr session.
+# ABOUTME: Usage: work-mini [--host HOST] [--herd] [--session SESSION | SESSION]
 
 function work-mini --description "mosh into mini and run utm"
-    # Parse --host and --session flags; remaining positional arg is session
+    # Parse --host, --herd and --session flags; remaining positional arg is session
     set -l host 2389-mini
     set -l session
     set -l positional
+    # Remote-side runner: utm unlocks the keychain then starts tmux, uhd starts herdr.
+    set -l runner utm
 
     set -l i 1
     while test $i -le (count $argv)
@@ -16,6 +18,8 @@ function work-mini --description "mosh into mini and run utm"
             case --session
                 set i (math $i + 1)
                 set session $argv[$i]
+            case --herd
+                set runner uhd
             case '*'
                 set -a positional $argv[$i]
         end
@@ -62,14 +66,18 @@ function work-mini --description "mosh into mini and run utm"
 
     # Connection info
     set_color --bold bryellow
-    echo "      ⮕  $host"
+    if test "$runner" = uhd
+        echo "      ⮕  $host  🐑 herdr"
+    else
+        echo "      ⮕  $host"
+    end
     set_color normal
     echo
 
     if test -n "$session"
-        mosh --server=/opt/homebrew/bin/mosh-server dylanr@$host -- /opt/homebrew/bin/fish -lc "utm $session"
+        mosh --server=/opt/homebrew/bin/mosh-server dylanr@$host -- /opt/homebrew/bin/fish -lc "$runner $session"
     else
-        mosh --server=/opt/homebrew/bin/mosh-server dylanr@$host -- /opt/homebrew/bin/fish -lc 'utm'
+        mosh --server=/opt/homebrew/bin/mosh-server dylanr@$host -- /opt/homebrew/bin/fish -lc "$runner"
     end
 
     # Disconnect banner
