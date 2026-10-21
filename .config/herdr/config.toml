@@ -1,3 +1,4 @@
+onboarding = false
 # ABOUTME: herdr configuration — terminal workspace manager for AI coding agents.
 # ABOUTME: Tuned for remote use: this machine is driven over SSH, so restarts must restore usefully.
 #
@@ -19,3 +20,9 @@ version_check = false
 # server restart brings panes back as empty shells in the right directories — on a
 # machine reached over SSH, the scrollback is usually the part worth keeping.
 pane_history = true
+
+[ui.sound]
+enabled = false
+
+[ui.toast]
+delivery = "system"
