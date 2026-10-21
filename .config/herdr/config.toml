@@ -1,3 +1,4 @@
+onboarding = false
 # ABOUTME: herdr configuration — terminal workspace manager for AI coding agents.
 # ABOUTME: Tuned for remote use: this machine is driven over SSH, so restarts must restore usefully.
 #
@@ -7,8 +8,9 @@
 
 [theme]
 # Matches the Ghostty theme in ~/.config/ghostty/config (Dracula+).
-name = "dracula"
+name = "solarized"
 
+auto_switch = false
 [update]
 # mise owns this binary (herdr is in ~/.config/mise/config.toml), so `herdr update`
 # would fight it. Background version nags off; upgrade with `mise upgrade herdr`.
@@ -19,3 +21,6 @@ version_check = false
 # server restart brings panes back as empty shells in the right directories — on a
 # machine reached over SSH, the scrollback is usually the part worth keeping.
 pane_history = true
+
+[ui.sound]
+enabled = false
