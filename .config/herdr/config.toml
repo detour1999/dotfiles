@@ -22,5 +22,16 @@ version_check = false
 # machine reached over SSH, the scrollback is usually the part worth keeping.
 pane_history = true
 
+[ui]
+# Outer window title, the herdr counterpart to tmux set-titles-string. The default
+# is "{hostname}: {workspace}", which drops {terminal_title} — the OSC 0/2 title a
+# pane's own process sets — so the terminal-title skill's output never reached the
+# window manager. {terminal_title} follows the focused pane.
+#
+# The separator is two spaces, not " - ": an untitled pane renders the token empty
+# and the trailing whitespace is trimmed away, where a dash would dangle. Titles
+# from the skill lead with an emoji, which does the visual separating.
+window_title = "{hostname}: {workspace}  {terminal_title}"
+
 [ui.sound]
 enabled = false

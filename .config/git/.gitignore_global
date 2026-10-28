@@ -72,3 +72,5 @@ Desktop.ini
 .gemini/trustedFolders.json
 .codex/auth.json
 .claude/.credentials.json
+
+**/.claude/settings.local.json

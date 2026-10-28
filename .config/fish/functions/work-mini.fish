@@ -7,6 +7,8 @@ function work-mini --description "mosh into mini and run utm"
     set -l session
     set -l positional
     # Remote-side runner: utm unlocks the keychain then starts tmux, uhd starts herdr.
+    # The name means a tmux session under utm and a herdr workspace under uhd —
+    # the levels that correspond, since a herdr session is a whole server.
     set -l runner utm
 
     set -l i 1
