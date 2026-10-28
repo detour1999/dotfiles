@@ -8,9 +8,8 @@ onboarding = false
 
 [theme]
 # Matches the Ghostty theme in ~/.config/ghostty/config (Dracula+).
-name = "solarized"
+name = "dracula"
 
-auto_switch = false
 [update]
 # mise owns this binary (herdr is in ~/.config/mise/config.toml), so `herdr update`
 # would fight it. Background version nags off; upgrade with `mise upgrade herdr`.
@@ -35,3 +34,6 @@ window_title = "{hostname}: {workspace}  {terminal_title}"
 
 [ui.sound]
 enabled = false
+
+[ui.toast]
+delivery = "system"
