@@ -160,7 +160,7 @@ if command -v fish &>/dev/null; then
             echo "$FISH_PATH" | sudo tee -a /etc/shells
         fi
         echo "Setting fish as default shell..."
-        chsh -s "$FISH_PATH"
+        sudo usermod -s "$FISH_PATH" "$USER"
     else
         echo "fish is already the default shell"
     fi
