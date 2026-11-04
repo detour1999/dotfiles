@@ -1,3 +1,5 @@
 herdr.log*
 herdr.sock*
 config.toml.bak*
+# Rendered by yadm from config.toml##template; the template is what's tracked.
+config.toml

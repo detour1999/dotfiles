@@ -76,6 +76,11 @@ function work-mini --description "mosh into mini and run utm"
     set_color normal
     echo
 
+    # mosh-client prepends "[mosh] " to every window title. Its text is a
+    # compile-time constant, so the only choice is on or off; herdr's window_title
+    # carries a one-glyph host marker instead, which a narrow tab can afford.
+    set -lx MOSH_TITLE_NOPREFIX 1
+
     if test -n "$session"
         mosh --server=/opt/homebrew/bin/mosh-server dylanr@$host -- /opt/homebrew/bin/fish -lc "$runner $session"
     else
