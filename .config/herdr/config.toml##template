@@ -1,0 +1,65 @@
+onboarding = false
+# ABOUTME: herdr configuration — terminal workspace manager for AI coding agents.
+# ABOUTME: Tuned for remote use: these machines are driven over SSH, so restarts must restore usefully.
+#
+# GENERATED FILE — edit ~/.config/herdr/config.toml##template, not config.toml.
+# yadm renders this template over config.toml on `yadm alt` and after any
+# checkout or merge, so hand edits to the output are silently discarded.
+#
+# Full annotated defaults: `herdr --default-config`
+# Validate after rendering: `herdr config check`
+# Apply to a live server:   `herdr server reload-config`
+
+[theme]
+# Matches the Ghostty theme in ~/.config/ghostty/config (Dracula+).
+name = "dracula"
+
+[update]
+# mise owns this binary (herdr is in ~/.config/mise/config.toml), so `herdr update`
+# would fight it. Background version nags off; upgrade with `mise upgrade herdr`.
+version_check = false
+
+[experimental]
+# Replay recent pane screen history across full server restarts. Without this, a
+# server restart brings panes back as empty shells in the right directories — on a
+# machine reached over SSH, the scrollback is usually the part worth keeping.
+pane_history = true
+
+[ui]
+# Outer window title, the herdr counterpart to tmux set-titles-string. The default
+# is "{hostname}: {workspace}", which drops {terminal_title} — the OSC 0/2 title a
+# pane's own process sets — so the terminal-title skill's output never reached the
+# window manager. {terminal_title} follows the focused pane.
+#
+# The separator is two spaces, not " - ": an untitled pane renders the token empty
+# and the trailing whitespace is trimmed away, where a dash would dangle. Titles
+# from the skill lead with an emoji, which does the visual separating.
+#
+# {hostname} is deliberately absent. A Ghostty tab shows roughly 25 characters and
+# the FQDN alone is 20 of them, pushing the workspace off the end. There is no way
+# to shorten a token — only to drop it — so one emoji names the machine in a
+# twenty-fifth of the space, following the convention in ~/.config/bin/tm.
+#
+# mosh-client otherwise prepends its own "[mosh] " marker, seven characters whose
+# text is a compile-time constant in the binary; work-mini sets MOSH_TITLE_NOPREFIX
+# to suppress it in favor of this one.
+#
+# One tracked config serves every machine, so the glyph is the one line that has to
+# differ. yadm's template engine offers == and != against a literal, and nesting,
+# but no elif — hence the staircase. An unmapped machine gets ✨ rather than
+# inheriting another host's identity, the same fallthrough tm uses.
+{% if yadm.hostname == "mini-dylan-2" %}
+window_title = "🖥️ {workspace}  {terminal_title}"
+{% else %}
+{% if yadm.hostname == "home-mini" %}
+window_title = "🏠 {workspace}  {terminal_title}"
+{% else %}
+window_title = "✨ {workspace}  {terminal_title}"
+{% endif %}
+{% endif %}
+
+[ui.sound]
+enabled = false
+
+[ui.toast]
+delivery = "system"
