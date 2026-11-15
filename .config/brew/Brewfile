@@ -38,7 +38,7 @@ brew "curl"
 # Library and utilities for processing GIFs
 brew "giflib"
 # Pack, ship and run any application as a lightweight container
-brew "docker", link: false
+brew "docker"
 # Docker CLI plugin for extended build capabilities with BuildKit
 brew "docker-buildx"
 # Isolated development environments using Docker
@@ -288,7 +288,7 @@ cask "tiles"
 cask "visual-studio-code"
 # Native desktop client for WhatsApp
 cask "whatsapp"
-cask "xtool"
+cask "xtool-org/tap/xtool"
 # Multiplayer code editor
 cask "zed"
 # Gecko based web browser
@@ -303,6 +303,7 @@ mas "Keynote", id: 409183694
 mas "NextDNS", id: 1464122853
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
+mas "Tailscale", id: 1475387142
 mas "TestFlight", id: 899247664
 mas "Windows App", id: 1295203466
 mas "Xcode", id: 497799835
