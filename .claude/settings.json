@@ -6,6 +6,7 @@
       "Skill(2389:terminal-title)"
     ]
   },
+  "model": "fable",
   "hooks": {
     "PreToolUse": [
       {
@@ -115,5 +116,10 @@
   },
   "feedbackSurveyState": {
     "lastShownTime": 1753982508427
+  },
+  "modelSettings": {
+    "claude-fable-5-2": {
+      "autoCompactWindow": 400000
+    }
   }
 }

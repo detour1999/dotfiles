@@ -21,22 +21,15 @@ end
 function __uhd_focus_workspace --argument-names label \
     --description 'Focus or create a herdr workspace by label'
 
-    # Workspace commands talk to a running server over the socket, so the server
-    # has to be up before the TUI attaches. herdr reports
-    # capabilities.detached_server_daemon = false, so backgrounding is on us.
+    # Workspace commands talk to a running server over the socket. With no server
+    # up there is nothing to focus, and starting one here is the wrong move: a
+    # hand-backgrounded `herdr server` reports
+    # capabilities.detached_server_daemon = false, which makes saved-machine
+    # clients (Spaceport, `herdr machine`) refuse the host. Let the attach that
+    # follows start the server herdr's own way and land on the default workspace.
     if not __uhd_server_running
-        herdr server >/dev/null 2>&1 </dev/null &
-        disown
-
-        for _attempt in (seq 50)
-            __uhd_server_running; and break
-            sleep 0.1
-        end
-
-        if not __uhd_server_running
-            echo "uhd: herdr server did not start" >&2
-            return 1
-        end
+        echo "uhd: no herdr server yet; starting without focusing '$label'" >&2
+        return 0
     end
 
     # `workspace focus` takes a workspace id, not a label, so match the label first.
