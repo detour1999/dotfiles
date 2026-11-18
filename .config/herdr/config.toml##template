@@ -48,7 +48,7 @@ pane_history = true
 # differ. yadm's template engine offers == and != against a literal, and nesting,
 # but no elif — hence the staircase. An unmapped machine gets ✨ rather than
 # inheriting another host's identity, the same fallthrough tm uses.
-{% if yadm.hostname == "mini-dylan-2" %}
+{% if yadm.hostname == "mini-dylan" %}
 window_title = "🖥️ {workspace}  {terminal_title}"
 {% else %}
 {% if yadm.hostname == "home-mini" %}
