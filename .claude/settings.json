@@ -103,6 +103,11 @@
       }
     }
   },
+  "modelSettings": {
+    "claude-fable-5-2": {
+      "effortLevel": "low"
+    }
+  },
   "promptSuggestionEnabled": false,
   "skipDangerousModePermissionPrompt": true,
   "theme": "dark-daltonized",
@@ -115,5 +120,6 @@
   },
   "feedbackSurveyState": {
     "lastShownTime": 1753982508427
-  }
+  },
+  "model": "fable"
 }
